@@ -1,0 +1,290 @@
+/* ═══════════════════════════════════════
+ Ratnakala interiors
+═══════════════════════════════════════ */
+
+/* ── Preloader ────────────────────── */
+#preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: var(--clr-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: opacity 0.6s var(--ease-default), visibility 0.6s;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--clr-gold);
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.preloader-bar {
+    width: 120px;
+    height: 1px;
+    background: var(--clr-surface-2);
+    position: relative;
+    overflow: hidden;
+}
+
+.preloader-bar::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--clr-gold);
+    animation: loadBar 1.2s ease-in-out infinite;
+}
+
+@keyframes loadBar {
+    0% {
+        left: -100%;
+    }
+
+    50% {
+        left: 0%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* ── Scroll Reveal ────────────────── */
+[data-reveal] {
+    opacity: 0;
+    transition: opacity 0.7s var(--ease-default), transform 0.7s var(--ease-default);
+}
+
+[data-reveal="fade-up"] {
+    transform: translateY(30px);
+}
+
+[data-reveal="fade-left"] {
+    transform: translateX(-30px);
+}
+
+[data-reveal="fade-right"] {
+    transform: translateX(30px);
+}
+
+[data-reveal="fade-in"] {
+    transform: scale(0.96);
+}
+
+[data-reveal].revealed {
+    opacity: 1;
+    transform: translate(0) scale(1);
+}
+
+/* stagger delays */
+[data-delay="100"] {
+    transition-delay: 0.1s;
+}
+
+[data-delay="200"] {
+    transition-delay: 0.2s;
+}
+
+[data-delay="300"] {
+    transition-delay: 0.3s;
+}
+
+[data-delay="400"] {
+    transition-delay: 0.4s;
+}
+
+[data-delay="500"] {
+    transition-delay: 0.5s;
+}
+
+[data-delay="600"] {
+    transition-delay: 0.6s;
+}
+
+/* ── Page Transition ──────────────── */
+.page-enter {
+    animation: pageEnter 0.5s var(--ease-default) both;
+}
+
+@keyframes pageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Hero Text Animations ─────────── */
+.hero-title-word {
+    display: inline-block;
+    overflow: hidden;
+}
+
+.hero-title-word span {
+    display: inline-block;
+    animation: slideUp 0.8s var(--ease-spring) both;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ── Floating elements ────────────── */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.floating {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* ── Fade In Up ───────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Counter animation ────────────── */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ── Shimmer (skeleton/hover) ─────── */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg,
+            var(--clr-surface) 25%,
+            var(--clr-surface-2) 50%,
+            var(--clr-surface) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+/* ── Marquee (optional logo strip) ── */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.marquee-track {
+    display: flex;
+    gap: 4rem;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+}
+
+/* ── Spin ─────────────────────────── */
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ── Image parallax hint ──────────── */
+.parallax-img {
+    transition: transform 0.6s var(--ease-default);
+}
+
+/* ── Toast notification ───────────── */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--clr-gold);
+    color: var(--clr-bg);
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 500;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-md);
+    z-index: 9000;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s var(--ease-spring);
+    pointer-events: none;
+}
+
+.toast.show {
+    transform: translateY(0);
+    opacity: 1;
+}

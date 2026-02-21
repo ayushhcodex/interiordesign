@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Design Ideas from Ratnakala Interiors — curated room-by-room inspiration for living rooms, bedrooms, kitchens, bathrooms, and commercial spaces in Davanagere and Karnataka.">
+    <title>Design Ideas — Ratnakala Interiors</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        /* ── Design Ideas specific styles ── */
+        .ideas-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        @media (min-width: 768px) {
+            .ideas-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1100px) {
+            .ideas-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .idea-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+
+        .idea-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .idea-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .idea-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13, 13, 13, 0.92) 0%, rgba(13, 13, 13, 0.1) 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.75rem;
+            transition: background 0.4s;
+        }
+
+        .idea-card:hover .idea-card-overlay {
+            background: linear-gradient(to top, rgba(13, 13, 13, 0.96) 0%, rgba(13, 13, 13, 0.3) 60%);
+        }
+
+        .idea-card-tag {
+            font-size: 0.6rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--clr-gold);
+            font-weight: 600;
+            background: rgba(201, 169, 110, 0.15);
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            padding: 0.3rem 0.7rem;
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+
+        .idea-card-title {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            color: var(--clr-text);
+            margin-bottom: 0.4rem;
+            line-height: 1.25;
+        }
+
+        .idea-card-desc {
+            font-size: 0.82rem;
+            color: rgba(245, 245, 240, 0.7);
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s;
+            opacity: 0;
+        }
+
+        .idea-card:hover .idea-card-desc {
+            max-height: 80px;
+            opacity: 1;
+        }
+
+        .idea-card-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--clr-gold);
+            transform: translateY(10px);
+            opacity: 0;
+            transition: all 0.4s 0.05s;
+        }
+
+        .idea-card:hover .idea-card-cta {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Featured large card */
+        .idea-card.large {
+            aspect-ratio: unset;
+            min-height: 500px;
+        }
+
+        @media (min-width: 1100px) {
+            .idea-card.large {
+                grid-column: span 2;
+            }
+        }
+
+        /* Tip cards */
+        .tip-card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .tip-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--clr-gold), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-gold);
+            border-color: rgba(201, 169, 110, 0.3);
+        }
+
+        .tip-card:hover::before {
+            opacity: 1;
+        }
+
+        .tip-number {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--clr-gold);
+            opacity: 0.12;
+            position: absolute;
+            top: 0.5rem;
+            right: 1rem;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* Colour palette swatches */
+        .palette-row {
+            display: flex;
+            gap: 0;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            height: 80px;
+            margin-top: 0.75rem;
+        }
+
+        .swatch {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            padding: 0.4rem 0.3rem;
+            font-size: 0.55rem;
+            letter-spacing: 0.05em;
+            text-align: center;
+            font-weight: 600;
+            justify-content: center;
+            transition: flex 0.3s;
+        }
+
+        .swatch:hover {
+            flex: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="preloader"><span class="preloader-logo">Ratnakala</span>
+        <div class="preloader-bar"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo"><span class="nav-logo-main">Ratnakala</span><span
+                        class="nav-logo-sub">Interiors</span></a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="design-ideas.html" class="nav-link">Design Ideas</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <a href="contact.html" class="btn btn-primary nav-cta">Get a Quote</a>
+                <div id="hamburger" class="hamburger"><span class="hamburger-bar"></span><span
+                        class="hamburger-bar"></span><span class="hamburger-bar"></span></div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="about.html" class="mobile-nav-link">About</a>
+        <a href="services.html" class="mobile-nav-link">Services</a>
+        <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+        <a href="design-ideas.html" class="mobile-nav-link">Design Ideas</a>
+        <a href="blog.html" class="mobile-nav-link">Blog</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Design Ideas</span></div>
+            <div class="section-eyebrow" data-reveal="fade-up">Get Inspired</div>
+            <h1 data-reveal="fade-up" data-delay="100">Curated <em>Design Ideas</em><br>for Every Space</h1>
+            <p style="max-width:560px;margin-top:1rem;" data-reveal="fade-up" data-delay="200">
+                Room-by-room inspiration from our Davanagere studio — from minimal living rooms to statement bedrooms,
+                luxe kitchens to spa-inspired bathrooms. Browse, save ideas, and book a consultation to bring them to
+                life.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;" data-reveal="fade-up"
+                data-delay="300">
+                <a href="#living-rooms" class="btn btn-outline" style="font-size:0.72rem;padding:0.6rem 1.2rem;">Living
+                    Rooms</a>
+                <a href="#bedrooms" class="btn btn-outline"
+                    style="font-size:0.72rem;padding:0.6rem 1.2rem;">Bedrooms</a>
+                <a href="#kitchens" class="btn btn-outline"
+                    style="font-size:0.72rem;padding:0.6rem 1.2rem;">Kitchens</a>
+                <a href="#bathrooms" class="btn btn-outline"
+                    style="font-size:0.72rem;padding:0.6rem 1.2rem;">Bathrooms</a>
+                <a href="#commercial" class="btn btn-outline"
+                    style="font-size:0.72rem;padding:0.6rem 1.2rem;">Commercial</a>
+                <a href="#colour" class="btn btn-outline" style="font-size:0.72rem;padding:0.6rem 1.2rem;">Colour
+                    Palettes</a>
+                <a href="#tips" class="btn btn-outline" style="font-size:0.72rem;padding:0.6rem 1.2rem;">Quick Tips</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ LIVING ROOMS ═══ -->
+    <section class="section-padding" id="living-rooms">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow" data-reveal="fade-up">01</div>
+                <h2 class="section-title" data-reveal="fade-up" data-delay="100">Living Room <em>Ideas</em></h2>
+                <p class="section-subtitle" data-reveal="fade-up" data-delay="200">The heart of the home — designed for
+                    comfort, conversation, and quiet luxury.</p>
+            </div>
+            <div class="ideas-grid" data-reveal="fade-up">
+                <div class="idea-card large" onclick="window.location='contact.html'">
+                    <img src="images/hero-bg.jpg" alt="Grand luxury living room with chandelier">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Living Room · Luxury</span>
+                        <h3 class="idea-card-title">The Grand Statement Room</h3>
+                        <p class="idea-card-desc">Double-height ceilings, a sculptural chandelier, and panoramic windows
+                            define this landmark living space. Marble floors and bespoke furniture complete the look.
+                        </p>
+                        <span class="idea-card-cta">Bring This to Life →</span>
+                    </div>
+                </div>
+                <div class="idea-card" onclick="window.location='contact.html'">
+                    <img src="images/portfolio-3.jpg" alt="Warm contemporary living room">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Living Room · Warm & Cosy</span>
+                        <h3 class="idea-card-title">Warm Terracotta Palette</h3>
+                        <p class="idea-card-desc">Boucle sofas, arched doorways, and a gallery wall create a warm,
+                            curated atmosphere without feeling overdone.</p>
+                        <span class="idea-card-cta">Enquire →</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Living Room Quick Tips -->
+            <div style="margin-top:var(--space-xl);">
+                <div class="section-eyebrow" data-reveal="fade-up">Quick Ideas</div>
+                <div class="grid-3" style="margin-top:1rem;">
+                    <div class="tip-card" data-reveal="fade-up">
+                        <span class="tip-number">01</span>
+                        <h4 style="margin-bottom:0.5rem;">Anchor with a Rug</h4>
+                        <p style="font-size:0.875rem;">A large area rug (big enough for all front legs of the sofa to
+                            rest on) instantly grounds a seating arrangement and defines the zone.</p>
+                    </div>
+                    <div class="tip-card" data-reveal="fade-up" data-delay="100">
+                        <span class="tip-number">02</span>
+                        <h4 style="margin-bottom:0.5rem;">Add a Focal Artwork</h4>
+                        <p style="font-size:0.875rem;">One large artwork above the sofa or fireplace is more impactful
+                            than many small pieces scattered around. Choose art that is at least two-thirds the width of
+                            your sofa.</p>
+                    </div>
+                    <div class="tip-card" data-reveal="fade-up" data-delay="200">
+                        <span class="tip-number">03</span>
+                        <h4 style="margin-bottom:0.5rem;">Add a Reading Nook</h4>
+                        <p style="font-size:0.875rem;">A comfortable armchair and floor lamp in a quiet corner creates a
+                            cosy reading spot that adds visual interest without cluttering the main seating area.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ BEDROOMS ═══ -->
+    <section class="section-padding" id="bedrooms"
+        style="background:var(--clr-surface);border-top:1px solid var(--clr-border);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow" data-reveal="fade-up">02</div>
+                <h2 class="section-title" data-reveal="fade-up" data-delay="100">Bedroom <em>Ideas</em></h2>
+                <p class="section-subtitle" data-reveal="fade-up" data-delay="200">Your bedroom should be your most
+                    personal sanctuary — calm, beautiful, and utterly restorative.</p>
+            </div>
+            <div class="ideas-grid" data-reveal="fade-up">
+                <div class="idea-card" onclick="window.location='contact.html'">
+                    <img src="images/portfolio-1.jpg" alt="Luxury bedroom with gold accents">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Bedroom · Modern Luxury</span>
+                        <h3 class="idea-card-title">Warm & Textured Retreat</h3>
+                        <p class="idea-card-desc">Fluted wall panels, warm cove lighting, and a statement linen
+                            headboard make this bedroom a daily luxury.</p>
+                        <span class="idea-card-cta">Book Consultation →</span>
+                    </div>
+                </div>
+                <div class="idea-card" onclick="window.location='contact.html'">
+                    <img src="images/portfolio-4.jpg" alt="Spa bathroom connected to bedroom">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Bedroom · Spa Suite</span>
+                        <h3 class="idea-card-title">The Master Suite Concept</h3>
+                        <p class="idea-card-desc">Combine your bedroom with an en-suite spa bathroom for the ultimate
+                            retreat experience.</p>
+                        <span class="idea-card-cta">Enquire →</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:var(--space-xl);">
+                <div class="section-eyebrow" data-reveal="fade-up">Bedroom Design Tips</div>
+                <div class="grid-3" style="margin-top:1rem;">
+                    <div class="tip-card" data-reveal="fade-up">
+                        <span class="tip-number">01</span>
+                        <h4 style="margin-bottom:0.5rem;">Invest in Your Headboard</h4>
+                        <p style="font-size:0.875rem;">An upholstered headboard that extends close to the ceiling
+                            creates drama and makes a small room feel taller. Choose soft textures like linen or boucle.
+                        </p>
+                    </div>
+                    <div class="tip-card" data-reveal="fade-up" data-delay="100">
+                        <span class="tip-number">02</span>
+                        <h4 style="margin-bottom:0.5rem;">Layer Your Lighting</h4>
+                        <p style="font-size:0.875rem;">Wall-mounted reading lights free up bedside table space, while a
+                            central pendant or chandelier adds ambience. Always add a dimmer.</p>
+                    </div>
+                    <div class="tip-card" data-reveal="fade-up" data-delay="200">
+                        <span class="tip-number">03</span>
+                        <h4 style="margin-bottom:0.5rem;">Keep It Cool & Calm</h4>
+                        <p style="font-size:0.875rem;">A bedroom palette of soft whites, warm beiges, muted greens, or
+                            dusty blues supports sleep. Save bold colours for living areas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ KITCHENS ═══ -->
+    <section class="section-padding" id="kitchens">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow" data-reveal="fade-up">03</div>
+                <h2 class="section-title" data-reveal="fade-up" data-delay="100">Kitchen <em>Ideas</em></h2>
+                <p class="section-subtitle" data-reveal="fade-up" data-delay="200">The kitchen is where family gathers
+                    and memories are made — it should be functional and beautiful in equal measure.</p>
+            </div>
+            <div class="ideas-grid" data-reveal="fade-up">
+                <div class="idea-card large" onclick="window.location='contact.html'">
+                    <img src="images/portfolio-2.jpg" alt="Luxury dark kitchen with brass pendants">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Kitchen · Dark & Dramatic</span>
+                        <h3 class="idea-card-title">The Chef's Showpiece Kitchen</h3>
+                        <p class="idea-card-desc">Dark walnut cabinetry, Calacatta marble, and sculptural brass
+                            pendants. This kitchen is designed to be the centre of attention.</p>
+                        <span class="idea-card-cta">Plan My Kitchen →</span>
+                    </div>
+                </div>
+                <div class="idea-card" onclick="window.location='contact.html'">
+                    <img src="images/portfolio-3.jpg" alt="Light minimal kitchen">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Kitchen · Minimal & Bright</span>
+                        <h3 class="idea-card-title">Clean White & Warm Wood</h3>
+                        <p class="idea-card-desc">Handle-less cabinets, warm wood accents, and natural stone worktops
+                            create a serene, timeless kitchen.</p>
+                        <span class="idea-card-cta">Get a Quote →</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:var(--space-xl);">
+                <div class="section-eyebrow" data-reveal="fade-up">Kitchen Design Tips</div>
+                <div class="grid-3" style="margin-top:1rem;">
+                    <div class="tip-card" data-reveal="fade-up">
+                        <span class="tip-number">01</span>
+                        <h4 style="margin-bottom:0.5rem;">The Triangle Rule</h4>
+                        <p style="font-size:0.875rem;">Keep your sink, refrigerator, and hob within an imaginary
+                            triangle. This is the kitchen work triangle — and it makes cooking effortless.</p>
+                    </div>
+                    <div class="tip-card" data-reveal="fade-up" data-delay="100">
+                        <span class="tip-number">02</span>
+                        <h4 style="margin-bottom:0.5rem;">Statement Pendants</h4>
+                        <p style="font-size:0.875rem;">Three pendant lights over a kitchen island transform a functional
+                            surface into a design centrepiece. Choose a finish that repeats elsewhere in the room.</p>
+                    </div>
+                    <div class="tip-card" data-reveal="fade-up" data-delay="200">
+                        <span class="tip-number">03</span>
+                        <h4 style="margin-bottom:0.5rem;">Mix Cabinet Heights</h4>
+                        <p style="font-size:0.875rem;">Floor-to-ceiling cabinets on one wall maximise storage, while
+                            open shelving on another creates visual lightness and a place to display beautiful
+                            kitchenware.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ BATHROOMS ═══ -->
+    <section class="section-padding" id="bathrooms"
+        style="background:var(--clr-surface);border-top:1px solid var(--clr-border);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow" data-reveal="fade-up">04</div>
+                <h2 class="section-title" data-reveal="fade-up" data-delay="100">Bathroom <em>Ideas</em></h2>
+                <p class="section-subtitle" data-reveal="fade-up" data-delay="200">Transform your daily routine into a
+                    ritual with a bathroom designed as a private spa.</p>
+            </div>
+            <div class="ideas-grid" data-reveal="fade-up">
+                <div class="idea-card" onclick="window.location='contact.html'">
+                    <img src="images/portfolio-4.jpg" alt="Marble spa bathroom">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Bathroom · Spa Luxury</span>
+                        <h3 class="idea-card-title">The Marble Sanctuary</h3>
+                        <p class="idea-card-desc">Floor-to-ceiling marble, a freestanding stone bath, and a garden-view
+                            rain shower. Daily bathing as a luxury ritual.</p>
+                        <span class="idea-card-cta">Design My Bathroom →</span>
+                    </div>
+                </div>
+                <div class="idea-card" onclick="window.location='contact.html'">
+                    <img src="images/portfolio-1.jpg" alt="Modern minimal bathroom">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Bathroom · Modern Minimal</span>
+                        <h3 class="idea-card-title">Clean Lines & Warm Tones</h3>
+                        <p class="idea-card-desc">Warm stone tiles, floating vanities with ambient LED underlighting,
+                            and brushed gold fixtures for quiet luxury.</p>
+                        <span class="idea-card-cta">Get Ideas →</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:var(--space-xl);">
+                <div class="section-eyebrow" data-reveal="fade-up">Bathroom Design Tips</div>
+                <div class="grid-3" style="margin-top:1rem;">
+                    <div class="tip-card" data-reveal="fade-up">
+                        <span class="tip-number">01</span>
+                        <h4 style="margin-bottom:0.5rem;">Tile Floor to Ceiling</h4>
+                        <p style="font-size:0.875rem;">Taking tiles all the way to the ceiling eliminates the need for
+                            paint and creates a bathroom that looks intentionally designed rather than retrofitted.</p>
+                    </div>
+                    <div class="tip-card" data-reveal="fade-up" data-delay="100">
+                        <span class="tip-number">02</span>
+                        <h4 style="margin-bottom:0.5rem;">Pick One Hero Fixture</h4>
+                        <p style="font-size:0.875rem;">A freestanding bathtub, an oversized rain shower, or a dramatic
+                            mirror — choose one showpiece fixture and let the rest of the room support it.</p>
+                    </div>
+                    <div class="tip-card" data-reveal="fade-up" data-delay="200">
+                        <span class="tip-number">03</span>
+                        <h4 style="margin-bottom:0.5rem;">Match Your Metals</h4>
+                        <p style="font-size:0.875rem;">Mixing metals (chrome tap, brass towel rail, black cabinet
+                            handles) looks uncoordinated. Choose one metal finish and apply it consistently across all
+                            fixtures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ COMMERCIAL ═══ -->
+    <section class="section-padding" id="commercial">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-eyebrow" data-reveal="fade-up">05</div>
+                <h2 class="section-title" data-reveal="fade-up" data-delay="100">Commercial <em>Ideas</em></h2>
+                <p class="section-subtitle" data-reveal="fade-up" data-delay="200">Office, retail, or hospitality spaces
+                    — designed to work hard and look extraordinary.</p>
+            </div>
+            <div class="ideas-grid" data-reveal="fade-up">
+                <div class="idea-card" onclick="window.location='contact.html'">
+                    <img src="images/portfolio-5.jpg" alt="Executive office dark aesthetic">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Office · Executive</span>
+                        <h3 class="idea-card-title">The Power Office</h3>
+                        <p class="idea-card-desc">Dark green, walnut, and brass. An office that commands respect and
+                            inspires focused work.</p>
+                        <span class="idea-card-cta">Design My Office →</span>
+                    </div>
+                </div>
+                <div class="idea-card" onclick="window.location='contact.html'">
+                    <img src="images/about-studio.jpg" alt="Creative studio workspace">
+                    <div class="idea-card-overlay">
+                        <span class="idea-card-tag">Studio · Creative</span>
+                        <h3 class="idea-card-title">The Creative Studio</h3>
+                        <p class="idea-card-desc">Natural light, open shelving, and a large collaborative table — a
+                            workspace designed for ideas and creativity.</p>
+                        <span class="idea-card-cta">Get a Commercial Quote →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ COLOUR PALETTES ═══ -->
+    <section class="section-padding" id="colour"
+        style="background:var(--clr-surface);border-top:1px solid var(--clr-border);">
+        <div class="container">
+            <div class="section-header centered">
+                <div class="section-eyebrow" data-reveal="fade-up">06</div>
+                <h2 class="section-title" data-reveal="fade-up" data-delay="100">Colour <em>Palettes</em></h2>
+                <p class="section-subtitle" data-reveal="fade-up" data-delay="200">Tested, refined, and proven — our
+                    favourite colour combinations for Indian homes.</p>
+            </div>
+            <div class="grid-3">
+                <div data-reveal="fade-up">
+                    <h4 style="margin-bottom:0.75rem;">01 · Warm Luxury</h4>
+                    <div class="palette-row">
+                        <div class="swatch" style="background:#F5F0E8;color:#333;">Ivory</div>
+                        <div class="swatch" style="background:#C9A96E;color:#111;">Gold</div>
+                        <div class="swatch" style="background:#8B6914;color:#F5F0E8;">Bronze</div>
+                        <div class="swatch" style="background:#2C1810;color:#F5F0E8;">Espresso</div>
+                        <div class="swatch" style="background:#0D0D0D;color:#C9A96E;">Onyx</div>
+                    </div>
+                    <p style="font-size:0.8rem;margin-top:0.5rem;">Best for: Master bedrooms, formal dining rooms,
+                        executive spaces.</p>
+                </div>
+                <div data-reveal="fade-up" data-delay="100">
+                    <h4 style="margin-bottom:0.75rem;">02 · Modern Minimal</h4>
+                    <div class="palette-row">
+                        <div class="swatch" style="background:#FFFFFF;color:#666;">White</div>
+                        <div class="swatch" style="background:#E8E4DC;color:#666;">Linen</div>
+                        <div class="swatch" style="background:#B8A898;color:#333;">Greige</div>
+                        <div class="swatch" style="background:#6B6560;color:#fff;">Taupe</div>
+                        <div class="swatch" style="background:#2D2926;color:#fff;">Charcoal</div>
+                    </div>
+                    <p style="font-size:0.8rem;margin-top:0.5rem;">Best for: Living rooms, home offices, modern
+                        apartments.</p>
+                </div>
+                <div data-reveal="fade-up" data-delay="200">
+                    <h4 style="margin-bottom:0.75rem;">03 · Earthy & Natural</h4>
+                    <div class="palette-row">
+                        <div class="swatch" style="background:#F7EFE5;color:#555;">Peach</div>
+                        <div class="swatch" style="background:#D4956A;color:#fff;">Terracotta</div>
+                        <div class="swatch" style="background:#8B7355;color:#fff;">Clay</div>
+                        <div class="swatch" style="background:#4A7C59;color:#fff;">Sage</div>
+                        <div class="swatch" style="background:#2C4A35;color:#fff;">Forest</div>
+                    </div>
+                    <p style="font-size:0.8rem;margin-top:0.5rem;">Best for: Family rooms, children's bedrooms, casual
+                        living spaces.</p>
+                </div>
+                <div data-reveal="fade-up" data-delay="100">
+                    <h4 style="margin-bottom:0.75rem;">04 · Bold & Dramatic</h4>
+                    <div class="palette-row">
+                        <div class="swatch" style="background:#1A1A2E;color:#fff;">Navy</div>
+                        <div class="swatch" style="background:#16213E;color:#fff;">Midnight</div>
+                        <div class="swatch" style="background:#B8860B;color:#fff;">Dark Gold</div>
+                        <div class="swatch" style="background:#F5F5F0;color:#333;">Cream</div>
+                        <div class="swatch" style="background:#C0A882;color:#111;">Sand</div>
+                    </div>
+                    <p style="font-size:0.8rem;margin-top:0.5rem;">Best for: Home libraries, accent walls, statement
+                        dining rooms.</p>
+                </div>
+                <div data-reveal="fade-up" data-delay="200">
+                    <h4 style="margin-bottom:0.75rem;">05 · Spa & Wellness</h4>
+                    <div class="palette-row">
+                        <div class="swatch" style="background:#F0EDE8;color:#555;">Stone</div>
+                        <div class="swatch" style="background:#D8CEBF;color:#555;">Pebble</div>
+                        <div class="swatch" style="background:#A8B5A0;color:#fff;">Sage</div>
+                        <div class="swatch" style="background:#7A968E;color:#fff;">Eucalyptus</div>
+                        <div class="swatch" style="background:#4A5E58;color:#fff;">Slate</div>
+                    </div>
+                    <p style="font-size:0.8rem;margin-top:0.5rem;">Best for: Bathrooms, meditation rooms, wellness
+                        spaces.</p>
+                </div>
+                <div data-reveal="fade-up" data-delay="300">
+                    <h4 style="margin-bottom:0.75rem;">06 · Classic Indian</h4>
+                    <div class="palette-row">
+                        <div class="swatch" style="background:#FFF8E7;color:#555;">Cream</div>
+                        <div class="swatch" style="background:#D4AF37;color:#111;">Turmeric</div>
+                        <div class="swatch" style="background:#8B0000;color:#fff;">Crimson</div>
+                        <div class="swatch" style="background:#1C3A2A;color:#fff;">Emerald</div>
+                        <div class="swatch" style="background:#2C1810;color:#fff;">Rosewood</div>
+                    </div>
+                    <p style="font-size:0.8rem;margin-top:0.5rem;">Best for: Traditional homes, pooja rooms, festive
+                        guest rooms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ QUICK TIPS ═══ -->
+    <section class="section-padding" id="tips">
+        <div class="container">
+            <div class="section-header centered">
+                <div class="section-eyebrow" data-reveal="fade-up">07</div>
+                <h2 class="section-title" data-reveal="fade-up" data-delay="100">10 Quick Design <em>Tips</em></h2>
+                <p class="section-subtitle" data-reveal="fade-up" data-delay="200">From our Davanagere studio —
+                    practical advice that makes a measurable difference.</p>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;">
+                <div class="tip-card" data-reveal="fade-up"><span class="tip-number">01</span>
+                    <h4>Odd Numbers Rule</h4>
+                    <p style="font-size:0.875rem">Always group decorative objects in sets of 3 or 5. Odd-numbered
+                        groupings feel more natural and dynamic than even pairs.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="50"><span class="tip-number">02</span>
+                    <h4>Curtains to The Ceiling</h4>
+                    <p style="font-size:0.875rem">Hang curtain rods as close to the ceiling as possible — it makes the
+                        room feel taller and more elegant, regardless of the actual ceiling height.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="100"><span class="tip-number">03</span>
+                    <h4>Mirror, Mirror</h4>
+                    <p style="font-size:0.875rem">A large mirror on the wall opposite a window doubles the natural light
+                        and makes any room feel significantly larger.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="150"><span class="tip-number">04</span>
+                    <h4>60-30-10 Colour Rule</h4>
+                    <p style="font-size:0.875rem">60% dominant (walls), 30% secondary (furniture), 10% accent (décor).
+                        This formula creates balanced, cohesive rooms every time.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="200"><span class="tip-number">05</span>
+                    <h4>Plants Breathe Life</h4>
+                    <p style="font-size:0.875rem">A fiddle-leaf fig, monstera, or snake plant adds height, colour, and a
+                        sense of warmth that no object can replicate. Start with one large statement plant.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="250"><span class="tip-number">06</span>
+                    <h4>Rug Size Matters</h4>
+                    <p style="font-size:0.875rem">The most common mistake: too small a rug. Your rug should be large
+                        enough for at least the front legs of all seating pieces to sit on it.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="100"><span class="tip-number">07</span>
+                    <h4>Layer Your Textures</h4>
+                    <p style="font-size:0.875rem">Mix wood, metal, glass, linen, and stone in every room. Textural
+                        variety is what makes rooms feel rich — not expensive materials alone.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="150"><span class="tip-number">08</span>
+                    <h4>Edit Ruthlessly</h4>
+                    <p style="font-size:0.875rem">Remove 30% of the objects from any shelf or surface. You'll almost
+                        always be surprised that it now looks better. Less is almost always more.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="200"><span class="tip-number">09</span>
+                    <h4>Focal Point First</h4>
+                    <p style="font-size:0.875rem">Every room needs one focal point — a fireplace, a large window, a
+                        statement artwork. Arrange the rest of the furniture to face or complement it.</p>
+                </div>
+                <div class="tip-card" data-reveal="fade-up" data-delay="250"><span class="tip-number">10</span>
+                    <h4>Personalise Thoughtfully</h4>
+                    <p style="font-size:0.875rem">Display things that mean something to you — not just things that look
+                        good. Personal objects create warmth that no amount of money can buy.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-padding cta-banner">
+        <div class="container">
+            <div class="cta-banner-inner">
+                <div data-reveal="fade-left">
+                    <div class="section-eyebrow">Love These Ideas?</div>
+                    <h2>Let's Bring Them to Life<br>in <em>Your</em> Space</h2>
+                    <p style="margin-top:0.75rem;max-width:460px;">Our Davanagere team is ready to take these
+                        inspirations and turn them into a stunning, personalised interior designed exactly for you.</p>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:1rem;" data-reveal="fade-right">
+                    <a href="contact.html" class="btn btn-primary">Book a Free Consultation</a>
+                    <a href="portfolio.html" class="btn btn-ghost">View Our Completed Projects</a>
+                    <p style="font-size:0.8rem;color:var(--clr-text-dim);">📍 Davanagere &amp; Channagiri, Karnataka</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo-main">Ratnakala</div>
+                    <div class="footer-logo-sub">Interiors</div>
+                    <p>Crafting exceptional spaces across Karnataka since 2015.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">IG</a><a href="#" class="social-link">Pi</a><a href="#"
+                            class="social-link">Li</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <div class="footer-links">
+                        <a href="index.html" class="footer-link">Home</a>
+                        <a href="about.html" class="footer-link">About</a>
+                        <a href="services.html" class="footer-link">Services</a>
+                        <a href="portfolio.html" class="footer-link">Portfolio</a>
+                        <a href="design-ideas.html" class="footer-link">Design Ideas</a>
+                        <a href="blog.html" class="footer-link">Blog</a>
+                        <a href="contact.html" class="footer-link">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <div class="footer-links">
+                        <a href="tel:+918884488198" class="footer-link">+91 88844 88198</a>
+                        <a href="mailto:ratnakalaindia@gmail.com" class="footer-link">ratnakalaindia@gmail.com</a>
+                        <span class="footer-link" style="cursor:default;">Davanagere, Karnataka</span>
+                        <span class="footer-link" style="cursor:default;">Channagiri (Branch)</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p style="font-size:0.8rem">Weekly design inspiration in your inbox.</p>
+                    <div class="footer-newsletter"><input type="email" placeholder="your@email.com"><button
+                            type="button">→</button></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Ratnakala Interiors. All rights reserved.</p>
+                <p>Designed by Ayush Singh</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

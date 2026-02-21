@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="The Ratnakala Interiors blog — weekly design tips, project reveals, trend reports, and interior design inspiration from our studio.">
+    <title>Blog — Ratnakala Interiors</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+
+<body>
+    <div id="preloader"><span class="preloader-logo">Ratnakala</span>
+        <div class="preloader-bar"></div>
+    </div>
+
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo"><span class="nav-logo-main">Ratnakala</span><span
+                        class="nav-logo-sub">Interiors</span></a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="services.html" class="nav-link">Services</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+      <a href="design-ideas.html" class="nav-link">Design Ideas</a>
+                    <a href="blog.html" class="nav-link">Blog</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <a href="contact.html" class="btn btn-primary nav-cta">Get a Quote</a>
+                <div id="hamburger" class="hamburger"><span class="hamburger-bar"></span><span
+                        class="hamburger-bar"></span><span class="hamburger-bar"></span></div>
+            </div>
+        </div>
+    </nav>
+    <div id="mobile-menu">
+        <a href="index.html" class="mobile-nav-link">Home</a>
+        <a href="about.html" class="mobile-nav-link">About</a>
+        <a href="services.html" class="mobile-nav-link">Services</a>
+        <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+  <a href="design-ideas.html" class="mobile-nav-link">Design Ideas</a>
+        <a href="blog.html" class="mobile-nav-link">Blog</a>
+        <a href="contact.html" class="mobile-nav-link">Contact</a>
+    </div>
+
+    <section class="page-hero">
+        <div class="container">
+            <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>Blog</span></div>
+            <div class="section-eyebrow" data-reveal="fade-up">Design Insights</div>
+            <h1 data-reveal="fade-up" data-delay="100">From Our <em>Studio</em><br>to Your Space</h1>
+            <p style="max-width:520px;margin-top:1rem;" data-reveal="fade-up" data-delay="200">
+                Weekly articles on design principles, project reveals, material guides, and the latest trends in
+                interior design — all written by our team of experts.
+            </p>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <!-- Category Filter -->
+            <div class="filter-tabs" data-reveal="fade-up">
+                <button class="filter-tab active" data-filter="All">All</button>
+                <button class="filter-tab" data-filter="Design Tips">Design Tips</button>
+                <button class="filter-tab" data-filter="Trends">Trends</button>
+                <button class="filter-tab" data-filter="Lighting">Lighting</button>
+                <button class="filter-tab" data-filter="Colour">Colour</button>
+            </div>
+
+            <!-- Blog Grid -->
+            <div class="grid-2" id="blog-grid">
+                <!-- Populated by blog.js -->
+            </div>
+
+            <!-- Pagination -->
+            <div id="pagination" style="display:flex;justify-content:center;gap:0.5rem;margin-top:var(--space-xl);">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Newsletter -->
+    <section class="section-padding" style="background:var(--clr-surface);border-top:1px solid var(--clr-border);">
+        <div class="container" style="max-width:640px;text-align:center;">
+            <div class="section-eyebrow" style="justify-content:center;" data-reveal="fade-up">Never Miss a Post</div>
+            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Subscribe to the<br><em>Ratnakala Studio</em>
+                Newsletter</h2>
+            <p data-reveal="fade-up" data-delay="200">Every Sunday, we share one beautiful idea, one design tip, and one
+                project reveal — straight to your inbox.</p>
+            <div class="footer-newsletter"
+                style="margin-top:var(--space-lg);max-width:420px;margin-left:auto;margin-right:auto;"
+                data-reveal="fade-up" data-delay="300">
+                <input type="email" placeholder="your@email.com" style="flex:1;">
+                <button type="button" style="padding:0.75rem 1.5rem;white-space:nowrap;">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <div class="footer-logo-main">Ratnakala</div>
+                    <div class="footer-logo-sub">Interiors</div>
+                    <p>Crafting exceptional spaces across Karnataka since 2015.</p>
+                    <div class="footer-social"><a href="#" class="social-link">IG</a><a href="#"
+                            class="social-link">Pi</a><a href="#" class="social-link">Li</a></div>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <div class="footer-links">
+                        <a href="index.html" class="footer-link">Home</a><a href="about.html"
+                            class="footer-link">About</a>
+                        <a href="services.html" class="footer-link">Services</a><a href="portfolio.html"
+                            class="footer-link">Portfolio</a>
+                        <a href="design-ideas.html" class="footer-link">Design Ideas</a><a href="blog.html" class="footer-link">Blog</a><a href="contact.html"
+                            class="footer-link">Contact</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p style="font-size:0.8rem">Weekly design inspiration in your inbox.</p>
+                    <div class="footer-newsletter"><input type="email" placeholder="your@email.com"><button
+                            type="button">→</button></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Ratnakala Interiors. All rights reserved.</p>
+                <p>Designed by Ayush Singh</p>
+            </div>
+        </div>
+    </footer>
+    <button id="back-to-top" aria-label="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M18 15l-6-6-6 6" />
+        </svg>
+    </button>
+    <script src="js/blog.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
