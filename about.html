@@ -43,14 +43,138 @@
         </div>
     </nav>
 
+    <style>
+        .about-hero {
+            position: relative;
+            padding: calc(var(--nav-height) + 6rem) 0 6rem;
+            background: radial-gradient(circle at 50% 10%, rgba(232, 114, 42, 0.08) 0%, var(--clr-bg) 60%);
+            text-align: center;
+        }
+
+        .about-hero .section-eyebrow {
+            justify-content: center;
+        }
+
+        .about-hero-title {
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            line-height: 1.1;
+            margin: 1.5rem 0;
+            letter-spacing: -0.02em;
+        }
+
+        .about-hero-title em {
+            color: var(--clr-gold-light);
+        }
+
+        .story-editorial {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+
+        @media (min-width: 900px) {
+            .story-editorial {
+                grid-template-columns: 1fr 1fr;
+                gap: 6rem;
+                align-items: start;
+            }
+
+            .story-sticky {
+                position: sticky;
+                top: calc(var(--nav-height) + 3rem);
+            }
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1.5fr 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .bento-item:nth-child(1) {
+                grid-column: 1 / 2;
+            }
+
+            .bento-item:nth-child(2) {
+                grid-column: 2 / 3;
+                grid-row: 1 / 3;
+            }
+
+            .bento-item:nth-child(3) {
+                grid-column: 1 / 2;
+            }
+        }
+
+        .bento-item {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            transition: transform var(--duration-md), border-color var(--duration-md);
+        }
+
+        .bento-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(232, 114, 42, 0.3);
+        }
+
+        .bento-icon {
+            font-size: 2.5rem;
+            color: var(--clr-gold);
+            margin-bottom: 2rem;
+        }
+
+        .philosophy-ultra {
+            background: #0a0907;
+            position: relative;
+            padding: 8rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(232, 114, 42, 0.1);
+            border-bottom: 1px solid rgba(232, 114, 42, 0.1);
+            overflow: hidden;
+        }
+
+        .philosophy-ultra::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(232, 114, 42, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .philosophy-quote {
+            position: relative;
+            z-index: 2;
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            line-height: 1.35;
+            color: var(--clr-gold-light);
+            max-width: 1100px;
+            margin: 0 auto;
+            font-weight: 400;
+            font-style: italic;
+        }
+    </style>
+
     <!-- Page Hero -->
-    <section class="page-hero">
+    <section class="about-hero">
         <div class="container">
-            <div class="breadcrumb"><a href="index.html">Home</a><span>›</span><span>About</span></div>
+            <div class="breadcrumb" style="justify-content:center; margin-bottom: 2rem;"><a
+                    href="index.html">Home</a><span>›</span><span>About</span></div>
             <div class="section-eyebrow" data-reveal="fade-up">The Next Chapter of a Trusted Legacy</div>
-            <h1 data-reveal="fade-up" data-delay="100">From the Makers of <em>Ambika Furniture</em><br>to Ratnakala
-                Interiors.</h1>
-            <p style="max-width:700px;margin-top:1rem;" data-reveal="fade-up" data-delay="200">
+            <h1 class="about-hero-title" data-reveal="fade-up" data-delay="100">From the Makers of <em>Ambika
+                    Furniture</em><br>to Ratnakala Interiors.</h1>
+            <p style="max-width:700px;margin:1.5rem auto 0;" data-reveal="fade-up" data-delay="200">
                 At Ratnakala Interiors, we don’t just decorate rooms; we build them from the ground up. We are the
                 specialized design branch of Ambika Furniture—a name that Davangere has trusted for many years for
                 quality and honest work. We believe that great design should not be a luxury for just a few, but a way
@@ -59,43 +183,40 @@
         </div>
     </section>
 
-    <!-- Studio Story -->
+    <!-- Studio Story - Editorial Asymmetric -->
     <section class="section-padding">
         <div class="container">
-            <div class="grid-2" style="gap:var(--space-xl);align-items:center;">
-                <div data-reveal="fade-left">
+            <div class="story-editorial">
+                <div class="story-sticky" data-reveal="fade-right">
                     <img src="images/about-studio.jpg" alt="Ratnakala Interiors Studio"
-                        style="width:100%;border-radius:var(--radius-xl);object-fit:cover;height:520px;">
+                        style="width:100%; border-radius:var(--radius-xl); object-fit:cover; aspect-ratio:3/4; box-shadow: var(--shadow-lg);">
                 </div>
-                <div>
+                <div style="padding-top: 3rem;">
                     <div class="section-eyebrow" data-reveal="fade-up">Our Story</div>
-                    <h2 class="section-title" data-reveal="fade-up" data-delay="100">A Foundation of <em>Quality</em>
+                    <h2 class="section-title" data-reveal="fade-up" data-delay="100"
+                        style="margin-bottom:2rem; font-size:clamp(2.5rem, 4vw, 3.5rem);">A Foundation of
+                        <em>Quality</em>
                     </h2>
-                    <p data-reveal="fade-up" data-delay="200">
+                    <p data-reveal="fade-up" data-delay="200" style="font-size:1.1rem; line-height:1.7;">
                         For decades, Ambika Furniture has been known across Karnataka for making strong, long-lasting
                         furniture. But we realized that a beautiful house needs more than just good furniture—it needs a
                         complete vision and a professional touch.
                     </p>
-                    <div class="divider"></div>
-                    <p data-reveal="fade-up" data-delay="300">
+                    <div class="divider" style="margin: 3rem 0; width: 60px; height: 1px; background: var(--clr-gold);">
+                    </div>
+                    <p data-reveal="fade-up" data-delay="300" style="font-size:1.1rem; line-height:1.7;">
                         Ratnakala Interiors was started to bring together the best of both worlds: the creative ideas of
                         a modern design studio and the technical skills of a real furniture factory.
-                    </p>
-                    <p style="margin-top:1.25rem;" data-reveal="fade-up" data-delay="400">
-                        Our team carries a strong design background from the National Institute of Design (NID) and
-                        years of hands-on experience in our own manufacturing units. We have moved from simply making
-                        furniture to designing entire living and working environments.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- The Ratnakala Edge -->
-    <section class="section-padding"
-        style="background:var(--clr-surface);border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border);">
+    <!-- The Ratnakala Edge - Bento Layout -->
+    <section class="section-padding" style="background:var(--clr-bg);">
         <div class="container">
-            <div class="section-header centered">
+            <div class="section-header centered" style="margin-bottom: 4rem;">
                 <div class="section-eyebrow" data-reveal="fade-up">Why Choose Us?</div>
                 <h2 class="section-title" data-reveal="fade-up" data-delay="100">The Ratnakala <em>Edge</em></h2>
                 <p class="section-subtitle" data-reveal="fade-up" data-delay="150"
@@ -105,57 +226,64 @@
                     benefits:
                 </p>
             </div>
-            <div class="values-grid">
-                <div class="value-item" data-reveal="fade-up">
-                    <div class="value-icon">✦</div>
-                    <h4 class="value-title">Knowledge of Materials</h4>
-                    <p style="font-size:0.85rem">We don’t just pick wood or stone; we understand how they work and how
-                        long they will last. We know which materials work best in our local climate so your home stays
-                        beautiful for years to come.</p>
+            <div class="bento-grid">
+                <div class="bento-item" data-reveal="fade-up">
+                    <div class="bento-icon">✦</div>
+                    <h4 class="bento-title">Knowledge of Materials</h4>
+                    <p style="color:var(--clr-text-dim); line-height:1.6;">We don’t just pick wood or stone; we
+                        understand how they work and how long they will last. We know which materials work best in our
+                        local climate so your home stays beautiful for years to come.</p>
                 </div>
-                <div class="value-item" data-reveal="fade-up" data-delay="100">
-                    <div class="value-icon">◎</div>
-                    <h4 class="value-title">Direct from the Factory</h4>
-                    <p style="font-size:0.85rem">Because we make our own furniture and cabinets in our own workshop, we
-                        can control the quality perfectly. There is no middleman, which means better quality and better
-                        value for you.</p>
+                <div class="bento-item" data-reveal="fade-up" data-delay="100"
+                    style="display:flex; flex-direction:column; justify-content:space-between; background: linear-gradient(135deg, var(--clr-surface) 0%, #15130f 100%);">
+                    <div>
+                        <div class="bento-icon">◎</div>
+                        <h4 class="bento-title" style="font-size: 2.2rem; margin-bottom: 1.5rem;">Direct from the
+                            Factory</h4>
+                        <p style="color:var(--clr-text-dim); line-height:1.6;">Because we make our own furniture and
+                            cabinets in our own workshop, we can control the quality perfectly. There is no middleman,
+                            which means better quality and better value for you.</p>
+                    </div>
                 </div>
-                <div class="value-item" data-reveal="fade-up" data-delay="200">
-                    <div class="value-icon">◈</div>
-                    <h4 class="value-title">A Large, Expert Team</h4>
-                    <p style="font-size:0.85rem">With a team of over 50 skilled professionals, we can handle
-                        everything—from small home renovations to large commercial projects—with the same care and
-                        attention to detail.</p>
+                <div class="bento-item" data-reveal="fade-up" data-delay="200">
+                    <div class="bento-icon">◈</div>
+                    <h4 class="bento-title">A Large, Expert Team</h4>
+                    <p style="color:var(--clr-text-dim); line-height:1.6;">With a team of over 50 skilled professionals,
+                        we can handle everything—from small home renovations to large commercial projects—with the same
+                        care and attention to detail.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Philosophy -->
-    <section class="section-padding">
+    <!-- Philosophy Cinematic -->
+    <section class="philosophy-ultra">
         <div class="container">
-            <div class="section-header centered">
-                <div class="section-eyebrow" data-reveal="fade-up">Our Philosophy</div>
-                <h2 class="section-title" data-reveal="fade-up" data-delay="100"
-                    style="font-size:2rem;line-height:1.4;">
-                    "Design should be both smart and beautiful.<br>At Ratnakala, we believe a room should be as strong
-                    as a piece of Ambika furniture and as breathtaking as a work of art."
-                </h2>
-            </div>
+            <div class="section-eyebrow" data-reveal="fade-up" style="justify-content:center; margin-bottom: 2rem;">Our
+                Philosophy</div>
+            <h2 class="philosophy-quote" data-reveal="fade-up" data-delay="100">
+                "Design should be both smart and beautiful. At Ratnakala, we believe a room should be as strong as a
+                piece of Ambika furniture and as breathtaking as a work of art."
+            </h2>
         </div>
     </section>
 
     <!-- Rooted in Davangere -->
-    <section
-        style="border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border);padding:4rem 0;background:var(--clr-surface);">
+    <section style="padding: 6rem 0; background:var(--clr-bg); position:relative; overflow:hidden;">
+        <div
+            style="position:absolute; top:0; left:50%; width:100%; height:1px; background:linear-gradient(90deg, transparent, var(--clr-gold), transparent); transform:translateX(-50%); opacity:0.3;">
+        </div>
         <div class="container">
             <div style="text-align:center; max-width:800px; margin:0 auto;" data-reveal="fade-up">
                 <div class="section-eyebrow" style="justify-content:center;">Rooted in Davangere</div>
-                <p style="color:var(--clr-text-dim);font-size:1.1rem;line-height:1.6;margin-top:1rem;">
+                <p style="color:var(--clr-text); font-size:1.4rem; line-height:1.6; margin-top:2rem;">
                     While our designs look modern and fresh, our heart is in Davangere. We understand our local culture,
-                    our traditions, and how families here like to live.<br><br>
-                    <strong style="color:var(--clr-gold);">Ratnakala is not just a new business; it is the next
-                        generation of a family legacy.</strong>
+                    our traditions, and how families here like to live.
+                </p>
+                <div style="margin: 3rem auto; width: 40px; height: 1px; background: var(--clr-gold);"></div>
+                <p style="font-family:var(--font-heading); font-size:1.8rem; color:var(--clr-gold-light);"
+                    data-reveal="fade-up" data-delay="200">
+                    From the makers of <em>Ambika Furnitures.</em>
                 </p>
             </div>
         </div>
