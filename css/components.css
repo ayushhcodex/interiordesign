@@ -62,11 +62,11 @@ ratnakala
 .btn-ghost {
     background: transparent;
     color: var(--clr-text);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--clr-border);
 }
 
 .btn-ghost:hover {
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: var(--clr-text-dim);
     transform: translateY(-2px);
 }
 
@@ -208,6 +208,7 @@ ratnakala
     flex-direction: column;
     gap: 5px;
     padding: 8px;
+    margin-right: 0.5rem;
     cursor: pointer;
 }
 
@@ -778,7 +779,7 @@ ratnakala
 
 /* ── CTA BANNER ───────────────────── */
 .cta-banner {
-    background: linear-gradient(135deg, #1A1208 0%, #0D0D0D 100%);
+    background: linear-gradient(135deg, var(--clr-surface-2) 0%, var(--clr-bg) 100%);
     border-top: 1px solid var(--clr-border);
     border-bottom: 1px solid var(--clr-border);
     position: relative;
