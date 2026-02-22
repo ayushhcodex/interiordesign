@@ -55,57 +55,6 @@ if (hamburger && mobileMenu) {
   });
 }
 
-// ── Hero BG Parallax & Fade ───────────
-const heroBg = document.querySelector('.hero-bg');
-const heroContent = document.querySelector('.hero-content');
-const scrollProgress = document.getElementById('scroll-progress');
-
-if (heroBg) {
-  heroBg.classList.add('loaded');
-}
-
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-
-  // Hero Parallax & Fade
-  if (heroBg && scrolled < window.innerHeight) {
-    heroBg.style.transform = `translateY(${scrolled * 0.3}px) scale(1)`;
-  }
-  if (heroContent && scrolled < window.innerHeight) {
-    const opacity = Math.max(0, 1 - (scrolled / 400));
-    const translateY = scrolled * 0.15;
-    heroContent.style.opacity = opacity;
-    heroContent.style.transform = `translateY(${translateY}px)`;
-  }
-
-  // Scroll Progress Bar
-  if (scrollProgress) {
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrolled / docHeight) * 100;
-    scrollProgress.style.width = `${scrollPercent}%`;
-  }
-}, { passive: true });
-
-// ── Scrollytelling Blocks ────────────
-const scrollyBlocks = document.querySelectorAll('.scrolly-block');
-if (scrollyBlocks.length) {
-  const scrollyObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      // Toggle active class when the block roughly hits the middle of the viewport
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-
-        // Optional: fade out siblings to focus on current text
-        scrollyBlocks.forEach(block => {
-          if (block !== entry.target) block.classList.remove('active');
-        });
-      }
-    });
-  }, { rootMargin: '-40% 0px -40% 0px' });
-
-  scrollyBlocks.forEach(block => scrollyObserver.observe(block));
-}
-
 // ── Scroll Reveal ─────────────────────
 const revealElements = document.querySelectorAll('[data-reveal]');
 if (revealElements.length) {

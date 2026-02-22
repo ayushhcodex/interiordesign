@@ -44,17 +44,17 @@ ratnakala
     background: var(--clr-gold-dark);
     border-color: var(--clr-gold-dark);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(201, 169, 110, 0.3);
+    box-shadow: 0 8px 24px rgba(232, 114, 42, 0.3);
 }
 
 .btn-outline {
     background: transparent;
     color: var(--clr-gold);
-    border: 1px solid rgba(201, 169, 110, 0.5);
+    border: 1px solid rgba(232, 114, 42, 0.5);
 }
 
 .btn-outline:hover {
-    background: rgba(201, 169, 110, 0.08);
+    background: rgba(232, 114, 42, 0.08);
     border-color: var(--clr-gold);
     transform: translateY(-2px);
 }
@@ -321,8 +321,8 @@ ratnakala
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    background: rgba(201, 169, 110, 0.1);
-    border: 1px solid rgba(201, 169, 110, 0.3);
+    background: rgba(232, 114, 42, 0.1);
+    border: 1px solid rgba(232, 114, 42, 0.3);
     color: var(--clr-gold);
     font-size: 0.7rem;
     letter-spacing: 0.18em;
@@ -401,7 +401,7 @@ ratnakala
 .card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-lg);
-    border-color: rgba(201, 169, 110, 0.3);
+    border-color: rgba(232, 114, 42, 0.3);
 }
 
 /* Project card */
@@ -499,7 +499,7 @@ ratnakala
     text-transform: uppercase;
     color: var(--clr-gold);
     font-weight: 600;
-    background: rgba(201, 169, 110, 0.1);
+    background: rgba(232, 114, 42, 0.1);
     padding: 0.3rem 0.7rem;
     border-radius: 2px;
 }
@@ -573,7 +573,7 @@ ratnakala
 
 .service-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(201, 169, 110, 0.3);
+    border-color: rgba(232, 114, 42, 0.3);
     box-shadow: var(--shadow-gold);
 }
 
@@ -584,7 +584,7 @@ ratnakala
 .service-icon {
     width: 52px;
     height: 52px;
-    background: rgba(201, 169, 110, 0.1);
+    background: rgba(232, 114, 42, 0.1);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
@@ -785,7 +785,7 @@ ratnakala
     right: -20%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(201, 169, 110, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(232, 114, 42, 0.08) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -913,7 +913,7 @@ ratnakala
 }
 
 .lightbox-close:hover {
-    background: rgba(201, 169, 110, 0.2);
+    background: rgba(232, 114, 42, 0.2);
     border-color: var(--clr-gold);
     color: var(--clr-gold);
 }
@@ -978,8 +978,8 @@ ratnakala
 .form-input:focus,
 .form-textarea:focus,
 .form-select:focus {
-    border-color: rgba(201, 169, 110, 0.5);
-    box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.08);
+    border-color: rgba(232, 114, 42, 0.5);
+    box-shadow: 0 0 0 3px rgba(232, 114, 42, 0.08);
 }
 
 .form-input.error,
@@ -1113,7 +1113,7 @@ ratnakala
 }
 
 .footer-newsletter input:focus {
-    border-color: rgba(201, 169, 110, 0.4);
+    border-color: rgba(232, 114, 42, 0.4);
 }
 
 .footer-newsletter button {
@@ -1297,7 +1297,7 @@ ratnakala
     width: 44px;
     height: 44px;
     border-radius: var(--radius-md);
-    background: rgba(201, 169, 110, 0.1);
+    background: rgba(232, 114, 42, 0.1);
     border: 1px solid var(--clr-border);
     display: flex;
     align-items: center;
@@ -1445,7 +1445,7 @@ ratnakala
 .blog-post-body blockquote {
     border-left: 3px solid var(--clr-gold);
     padding: 1rem 1.5rem;
-    background: rgba(201, 169, 110, 0.05);
+    background: rgba(232, 114, 42, 0.05);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     margin: 1.5rem 0;
     font-style: italic;

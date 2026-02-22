@@ -260,11 +260,6 @@
     }
 }
 
-/* ── Image parallax hint ──────────── */
-.parallax-img {
-    transition: transform 0.6s var(--ease-default);
-}
-
 /* ── Toast notification ───────────── */
 .toast {
     position: fixed;
@@ -287,66 +282,4 @@
 .toast.show {
     transform: translateY(0);
     opacity: 1;
-}
-
-/* ── SCROLLYTELLING ARCHITECTURE ──── */
-
-/* Progress Bar */
-#scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 4px;
-    background: var(--clr-gold);
-    z-index: 9999;
-    transition: width 0.1s ease-out;
-}
-
-/* Scrolly Grid Container */
-.scrolly-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-}
-
-@media (min-width: 900px) {
-    .scrolly-grid {
-        grid-template-columns: 1fr 1fr;
-        align-items: start;
-    }
-}
-
-/* Sticky Left Pane */
-.scrolly-sticky {
-    position: sticky;
-    top: calc(var(--nav-height) + var(--space-md));
-    padding-bottom: var(--space-xl);
-    /* prevent harsh cutoff */
-}
-
-/* Scrolling Content Blocks */
-.scrolly-content {
-    display: flex;
-    flex-direction: column;
-    gap: 50vh;
-    /* Spacing between "slides" */
-    padding-top: 20vh;
-    padding-bottom: 20vh;
-}
-
-.scrolly-block {
-    opacity: 0.3;
-    transition: opacity 0.5s ease-out, transform 0.5s ease;
-    transform: translateY(20px);
-}
-
-.scrolly-block.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.scrolly-block p {
-    font-size: 1.25rem;
-    line-height: 1.8;
 }

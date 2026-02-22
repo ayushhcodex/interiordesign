@@ -6,16 +6,553 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
     content="Ratnakala Interiors — Davanagere's premier interior design studio — crafting timeless luxury spaces across Karnataka. Residential, commercial, and bespoke design services.">
+  <meta property="og:title" content="Ratnakala Interiors — Luxury Interior Design Studio">
+  <meta property="og:description"
+    content="Crafting exceptional living and working spaces across India since 2015. Award-winning interior design studio.">
+  <meta property="og:type" content="website">
   <title>Ratnakala Interiors — Luxury Interior Design Studio</title>
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/components.css">
+
+  <!-- ═══ HOMEPAGE-ONLY SCOPED STYLES ═══ -->
+  <style>
+    /* ── Hero Split Layout ──────────────── */
+    .hero-split {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      overflow: hidden;
+      background: var(--clr-bg);
+    }
+
+    @media (min-width: 900px) {
+      .hero-split {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: calc(var(--nav-height) + 4rem) var(--space-lg) var(--space-3xl);
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (min-width: 900px) {
+      .hero-left {
+        padding: calc(var(--nav-height) + 5rem) var(--space-xl) var(--space-3xl) clamp(1.5rem, 5vw, 5rem);
+      }
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      min-height: 55vw;
+    }
+
+    @media (min-width: 900px) {
+      .hero-right {
+        min-height: 100vh;
+      }
+    }
+
+    /* Collage grid inside hero-right */
+    .hero-collage {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 4px;
+      padding: calc(var(--nav-height) + 1rem) 4px 4px 4px;
+    }
+
+    .hero-collage-img {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-collage-img:first-child {
+      grid-row: 1 / 3;
+    }
+
+    .hero-collage-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 8s ease-out;
+    }
+
+    .hero-collage-img img.loaded {
+      transform: scale(1);
+    }
+
+    .hero-collage-img img {
+      transform: scale(1.05);
+    }
+
+    /* Gradient fade from left edge so text is readable on mobile */
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--clr-bg) 0%, transparent 40%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    @media (min-width: 900px) {
+      .hero-right::after {
+        background: none;
+      }
+    }
+
+    /* Vertical label */
+    .hero-vertical-label {
+      position: absolute;
+      left: -3.5rem;
+      top: 50%;
+      transform: translateY(-50%) rotate(-90deg);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      white-space: nowrap;
+      display: none;
+    }
+
+    @media (min-width: 1100px) {
+      .hero-vertical-label {
+        display: block;
+      }
+    }
+
+    /* ── Marquee Strip ──────────────────── */
+    .marquee-strip {
+      overflow: hidden;
+      border-top: 1px solid var(--clr-border);
+      border-bottom: 1px solid var(--clr-border);
+      padding: 1rem 0;
+      background: var(--clr-surface);
+    }
+
+    .marquee-inner {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 22s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clr-text-dim);
+      white-space: nowrap;
+    }
+
+    .marquee-item .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--clr-gold);
+      flex-shrink: 0;
+    }
+
+    /* ── Stats Ultra ────────────────────── */
+    .stats-ultra {
+      background: linear-gradient(135deg, #111008 0%, var(--clr-bg) 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-ultra::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(232, 114, 42, 0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .stats-ultra .stats-grid {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stats-ultra .stat-item {
+      background: transparent;
+      border: none;
+      border-right: 1px solid var(--clr-border);
+      padding: 3.5rem 2rem;
+    }
+
+    .stats-ultra .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stats-ultra .stat-number {
+      font-size: 4rem;
+    }
+
+    /* ── Featured Projects Asymmetric ───── */
+    .projects-mosaic {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (min-width: 768px) {
+      .projects-mosaic {
+        grid-template-columns: 1.6fr 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .projects-mosaic .project-card:first-child {
+        grid-row: 1 / 3;
+      }
+
+      .projects-mosaic .project-card:first-child .project-card-img {
+        aspect-ratio: 3/4;
+        height: 100%;
+      }
+    }
+
+    /* ── Services Numbered ──────────────── */
+    .services-numbered {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--clr-border);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    @media (min-width: 640px) {
+      .services-numbered {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .services-numbered {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .svc-card {
+      background: var(--clr-surface);
+      padding: 2rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--duration-md) var(--ease-default);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .svc-card:hover {
+      background: var(--clr-surface-2);
+    }
+
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--clr-gold), transparent);
+      opacity: 0;
+      transition: opacity var(--duration-md);
+    }
+
+    .svc-card:hover::after {
+      opacity: 1;
+    }
+
+    .svc-num {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 600;
+      color: rgba(232, 114, 42, 0.12);
+      line-height: 1;
+      transition: color var(--duration-md);
+    }
+
+    .svc-card:hover .svc-num {
+      color: rgba(232, 114, 42, 0.25);
+    }
+
+    .svc-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(232, 114, 42, 0.1);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-gold);
+    }
+
+    .svc-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .svc-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .svc-card p {
+      font-size: 0.825rem;
+    }
+
+    .svc-arrow {
+      margin-top: auto;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all var(--duration-md) var(--ease-default);
+    }
+
+    .svc-card:hover .svc-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── Blog Featured Layout ───────────── */
+    .blog-featured-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (min-width: 900px) {
+      .blog-featured-grid {
+        grid-template-columns: 2fr 1fr;
+        align-items: start;
+      }
+    }
+
+    /* First child gets the featured treatment */
+    #home-blog-grid .blog-card:first-child .blog-card-img {
+      aspect-ratio: 16/9;
+    }
+
+    #home-blog-grid .blog-card:first-child .blog-card-title {
+      font-size: 1.5rem;
+    }
+
+    .blog-secondary-stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    /* Horizontal mini cards for secondary posts */
+    .blog-mini-card {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 1rem;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--duration-md), box-shadow var(--duration-md), border-color var(--duration-md);
+    }
+
+    .blog-mini-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(232, 114, 42, 0.3);
+    }
+
+    .blog-mini-img {
+      overflow: hidden;
+    }
+
+    .blog-mini-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-default);
+    }
+
+    .blog-mini-card:hover .blog-mini-img img {
+      transform: scale(1.06);
+    }
+
+    .blog-mini-body {
+      padding: 1.25rem 1.25rem 1.25rem 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .blog-mini-cat {
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .blog-mini-title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      line-height: 1.35;
+      color: var(--clr-text);
+      transition: color var(--duration-fast);
+    }
+
+    .blog-mini-card:hover .blog-mini-title {
+      color: var(--clr-gold-light);
+    }
+
+    .blog-mini-date {
+      font-size: 0.7rem;
+      color: var(--clr-text-dim);
+      margin-top: 0.5rem;
+    }
+
+    .blog-mini-read {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      margin-top: 0.6rem;
+    }
+
+    /* ── CTA Cinematic ──────────────────── */
+    .cta-cinematic {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #130F07 0%, #0D0D0D 100%);
+      border-top: 1px solid var(--clr-border);
+    }
+
+    .cta-bg-word {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading);
+      font-size: clamp(8rem, 18vw, 18rem);
+      font-weight: 700;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(232, 114, 42, 0.06);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .cta-glow {
+      position: absolute;
+      top: -30%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(232, 114, 42, 0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-glow-2 {
+      position: absolute;
+      bottom: -30%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(232, 114, 42, 0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-inner-new {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: var(--space-3xl) 0;
+    }
+
+    .cta-inner-new h2 {
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      margin-bottom: var(--space-md);
+    }
+
+    .cta-inner-new h2 em {
+      font-style: italic;
+      color: var(--clr-gold-light);
+    }
+
+    .cta-inner-new p {
+      max-width: 500px;
+      margin: 0 auto var(--space-lg);
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
+      margin: 0 auto var(--space-lg);
+    }
+
+    /* ── WhatsApp Float ─────────────────── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.35);
+      z-index: 900;
+      transition: transform var(--duration-md) var(--ease-spring), box-shadow var(--duration-md);
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+    }
+
+    .whatsapp-icon {
+      color: #fff;
+    }
+  </style>
 </head>
 
 <body>
-
-  <!-- Progress Bar -->
-  <div id="scroll-progress"></div>
 
   <!-- Preloader -->
   <div id="preloader">
@@ -60,82 +597,109 @@
     </div>
   </nav>
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero">
-    <div class="hero-bg" style="background-image: url('images/hero-bg.jpg');"></div>
-    <div class="hero-overlay"></div>
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-badge">✦ Award-Winning Studio · Est. 2015</div>
-        <h1 class="hero-title">
-          Where <em>Vision</em><br>Becomes<br>Your Reality
-        </h1>
-        <p class="hero-desc">
-          We craft living and working spaces that are as functional as they are breathtaking —
-          designed with precision, built with passion, and finished to perfection.
-        </p>
-        <div class="hero-actions">
-          <a href="portfolio.html" class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-            View Our Work
-          </a>
-          <a href="contact.html" class="btn btn-ghost">Book a Consultation</a>
+  <!-- ═══ HERO — EDITORIAL SPLIT ═══ -->
+  <section class="hero-split" aria-label="Hero">
+    <!-- Left: Content -->
+    <div class="hero-left">
+      <div class="hero-vertical-label">Ratnakala Interiors · Est. 2015</div>
+      <div class="hero-badge" style="animation:fadeInUp 0.8s 0.3s both;">✦ Award-Winning Studio · Est. 2015</div>
+      <h1 class="hero-title" style="animation:fadeInUp 0.8s 0.5s both;">
+        Where <em>Vision</em><br>Becomes<br>Your Reality
+      </h1>
+      <p class="hero-desc" style="animation:fadeInUp 0.8s 0.7s both;">
+        We craft living and working spaces that are as functional as they are breathtaking —
+        designed with precision, built with passion, finished to perfection.
+      </p>
+      <div class="hero-actions" style="animation:fadeInUp 0.8s 0.9s both;">
+        <a href="portfolio.html" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+          View Our Work
+        </a>
+        <a href="contact.html" class="btn btn-ghost">Book a Consultation</a>
+      </div>
+      <!-- Scroll indicator -->
+      <div class="hero-scroll" style="position:static;margin-top:var(--space-lg);animation:fadeInUp 1s 1.2s both;">
+        <span class="hero-scroll-line"></span>
+        <span class="hero-scroll-label">Scroll</span>
+      </div>
+    </div>
+
+    <!-- Right: Image Collage -->
+    <div class="hero-right">
+      <div class="hero-collage">
+        <div class="hero-collage-img">
+          <img src="images/portfolio-3.jpg" alt="Luxury interior design — penthouse suite" loading="eager">
+        </div>
+        <div class="hero-collage-img">
+          <img src="images/portfolio-1.jpg" alt="Interior design — bedroom" loading="eager">
+        </div>
+        <div class="hero-collage-img">
+          <img src="images/portfolio-2.jpg" alt="Interior design — kitchen" loading="eager">
         </div>
       </div>
     </div>
-    <div class="hero-scroll">
-      <span class="hero-scroll-line"></span>
-      <span class="hero-scroll-label">Scroll</span>
-    </div>
   </section>
 
-  <!-- ═══ INTRO (SCROLLYTELLING) ═══ -->
-  <section class="section-padding scrolly-section" style="background:var(--clr-bg);">
+  <!-- ═══ MARQUEE TAGLINE STRIP ═══ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-inner">
+      <!-- Duplicated for seamless loop -->
+      <span class="marquee-item">Luxury Interiors <span class="dot"></span></span>
+      <span class="marquee-item">Residential Design <span class="dot"></span></span>
+      <span class="marquee-item">Commercial Spaces <span class="dot"></span></span>
+      <span class="marquee-item">3D Visualisation <span class="dot"></span></span>
+      <span class="marquee-item">Space Planning <span class="dot"></span></span>
+      <span class="marquee-item">Renovation <span class="dot"></span></span>
+      <span class="marquee-item">Davanagere · Karnataka <span class="dot"></span></span>
+      <span class="marquee-item">Luxury Interiors <span class="dot"></span></span>
+      <span class="marquee-item">Residential Design <span class="dot"></span></span>
+      <span class="marquee-item">Commercial Spaces <span class="dot"></span></span>
+      <span class="marquee-item">3D Visualisation <span class="dot"></span></span>
+      <span class="marquee-item">Space Planning <span class="dot"></span></span>
+      <span class="marquee-item">Renovation <span class="dot"></span></span>
+      <span class="marquee-item">Davanagere · Karnataka <span class="dot"></span></span>
+    </div>
+  </div>
+
+  <!-- ═══ OUR PHILOSOPHY ═══ -->
+  <section class="section-padding" style="background:var(--clr-bg);">
     <div class="container">
-      <div class="scrolly-grid">
-        <!-- Left Pane: Sticky Image & Intro -->
-        <div class="scrolly-sticky">
+      <div class="grid-2" style="gap:var(--space-xl);align-items:center;">
+        <!-- Left: Image -->
+        <div data-reveal="fade-left" style="position:relative;">
+          <img src="images/about-studio.jpg" alt="Ratnakala Interiors Studio"
+            style="width:100%;border-radius:var(--radius-xl);object-fit:cover;height:460px;">
+          <!-- Floating badge -->
+          <div
+            style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--clr-gold);color:var(--clr-bg);padding:1.25rem 1.75rem;border-radius:var(--radius-md);box-shadow:var(--shadow-md);">
+            <div style="font-family:var(--font-heading);font-size:2rem;font-weight:700;line-height:1;">10+</div>
+            <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">Years of
+              Excellence</div>
+          </div>
+        </div>
+        <!-- Right: Text -->
+        <div>
           <div class="section-eyebrow" data-reveal="fade-up">Our Philosophy</div>
           <h2 class="section-title" data-reveal="fade-up" data-delay="100">
             Design That <em>Speaks</em> Without Words
           </h2>
-          <div data-reveal="fade-right" style="position:relative; margin-top:2rem;">
-            <img src="images/about-studio.jpg" alt="Ratnakala Interiors Studio" class="scrolly-parallax"
-              style="width:100%;border-radius:var(--radius-xl);object-fit:cover;height:500px;">
-            <div
-              style="position:absolute;bottom:-1.5rem;left:-1.5rem;background:var(--clr-gold);color:var(--clr-bg);padding:1.25rem 1.75rem;border-radius:var(--radius-md); box-shadow: var(--shadow-md);">
-              <div style="font-family:var(--font-heading);font-size:2rem;font-weight:700;line-height:1;">10+</div>
-              <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">Years of
-                Excellence</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Pane: Scrolling Text -->
-        <div class="scrolly-content">
-          <div class="scrolly-block">
-            <p>
-              At Ratnakala Interiors, we believe that great spaces are not simply designed — they are discovered.
-              Every project begins with deep listening: understanding how you live, what you love, and who you are.
-            </p>
-          </div>
-          <div class="scrolly-block">
-            <p>
-              From there, we translate your story into spaces that are uniquely, unmistakably yours. We don't just fill
-              rooms with furniture; we sculpt environments that elevate your daily rituals.
-            </p>
-          </div>
-          <div class="scrolly-block">
-            <div class="divider"></div>
-            <p>
-              With over a decade of experience across residential penthouses, boutique hotels,
-              and commercial environments, our team brings craft and conceptual rigour to every brief.
-            </p>
-            <div style="margin-top:var(--space-lg);">
-              <a href="about.html" class="btn btn-outline">Our Story →</a>
-            </div>
+          <p data-reveal="fade-up" data-delay="200">
+            At Ratnakala Interiors, we believe that great spaces are not simply designed — they are discovered.
+            Every project begins with deep listening: understanding how you live, what you love, and who you are.
+          </p>
+          <div class="divider"></div>
+          <p data-reveal="fade-up" data-delay="300">
+            From there, we translate your story into spaces that are uniquely, unmistakably yours. We don't just
+            fill rooms with furniture; we sculpt environments that elevate your daily rituals.
+          </p>
+          <p style="margin-top:1.25rem;" data-reveal="fade-up" data-delay="400">
+            With over a decade of experience across residential penthouses, boutique hotels,
+            and commercial environments, our team brings craft and conceptual rigour to every brief.
+          </p>
+          <div style="margin-top:var(--space-lg);" data-reveal="fade-up" data-delay="500">
+            <a href="about.html" class="btn btn-outline">Our Story →</a>
           </div>
         </div>
       </div>
@@ -143,7 +707,7 @@
   </section>
 
   <!-- ═══ STATS ═══ -->
-  <section>
+  <section class="stats-ultra">
     <div class="container" style="padding:0;">
       <div class="stats-grid">
         <div class="stat-item" data-reveal="fade-up">
@@ -166,7 +730,7 @@
     </div>
   </section>
 
-  <!-- ═══ FEATURED PROJECTS ═══ -->
+  <!-- ═══ FEATURED PROJECTS — ASYMMETRIC MOSAIC ═══ -->
   <section class="section-padding">
     <div class="container">
       <div class="section-header centered">
@@ -176,8 +740,9 @@
           A curated selection of our most celebrated projects — each a testament to the power of thoughtful design.
         </p>
       </div>
-      <div class="grid-3">
-        <article class="card project-card" onclick="window.location='portfolio.html'" data-reveal="fade-up">
+      <!-- Asymmetric grid: 1 large left + 3 small right -->
+      <div class="projects-mosaic">
+        <article class="card project-card" onclick="window.location='portfolio.html'" data-reveal="fade-left">
           <div class="project-card-img">
             <img src="images/portfolio-3.jpg" alt="The Penthouse Suite" loading="lazy">
             <div class="project-card-overlay">
@@ -193,7 +758,7 @@
           </div>
         </article>
         <article class="card project-card" onclick="window.location='portfolio.html'" data-reveal="fade-up"
-          data-delay="150">
+          data-delay="100">
           <div class="project-card-img">
             <img src="images/portfolio-2.jpg" alt="The Brass Kitchen" loading="lazy">
             <div class="project-card-overlay">
@@ -209,9 +774,9 @@
           </div>
         </article>
         <article class="card project-card" onclick="window.location='portfolio.html'" data-reveal="fade-up"
-          data-delay="300">
+          data-delay="200">
           <div class="project-card-img">
-            <img src="images/portfolio-1.jpg" alt="The Jade Bedroom" loading="lazy">
+            <img src="images/portfolio-4.jpg" alt="The Jade Retreat" loading="lazy">
             <div class="project-card-overlay">
               <span
                 style="color:var(--clr-gold);font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;">View
@@ -220,7 +785,7 @@
           </div>
           <div class="project-card-body">
             <p class="project-card-cat">Bedroom · 2025</p>
-            <h3 class="project-card-title">The Jade Bedroom</h3>
+            <h3 class="project-card-title">The Jade Retreat</h3>
             <p style="font-size:0.85rem;color:var(--clr-text-dim)">Delhi, India</p>
           </div>
         </article>
@@ -231,7 +796,7 @@
     </div>
   </section>
 
-  <!-- ═══ SERVICES STRIP ═══ -->
+  <!-- ═══ SERVICES — NUMBERED PREMIUM CARDS ═══ -->
   <section class="section-padding"
     style="background:var(--clr-surface);border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border);">
     <div class="container">
@@ -239,72 +804,103 @@
         <div class="section-eyebrow" data-reveal="fade-up">What We Do</div>
         <h2 class="section-title" data-reveal="fade-up" data-delay="100">Our Services</h2>
       </div>
-      <div class="grid-3">
-        <div class="service-card" data-reveal="fade-up">
-          <div class="service-icon">
+      <div class="services-numbered" data-reveal="fade-up" data-delay="200">
+
+        <div class="svc-card">
+          <div class="svc-num">01</div>
+          <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
               <polyline points="9 22 9 12 15 12 15 22" />
             </svg>
           </div>
-          <h3>Residential Design</h3>
-          <p style="font-size:0.875rem">From intimate apartments to sprawling villas — we design homes that reflect your
-            life perfectly.</p>
+          <div>
+            <h3>Residential Design</h3>
+            <p style="font-size:0.825rem">From intimate apartments to sprawling villas — homes that reflect your life
+              perfectly.</p>
+          </div>
+          <span class="svc-arrow">Explore →</span>
         </div>
-        <div class="service-card" data-reveal="fade-up" data-delay="100">
-          <div class="service-icon">
+
+        <div class="svc-card">
+          <div class="svc-num">02</div>
+          <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <rect x="2" y="3" width="20" height="14" rx="2" />
               <line x1="8" y1="21" x2="16" y2="21" />
               <line x1="12" y1="17" x2="12" y2="21" />
             </svg>
           </div>
-          <h3>Commercial Spaces</h3>
-          <p style="font-size:0.875rem">Offices, hotels, restaurants and retail spaces designed to perform and impress
-            at every touchpoint.</p>
+          <div>
+            <h3>Commercial Spaces</h3>
+            <p style="font-size:0.825rem">Offices, hotels, restaurants and retail spaces designed to perform and
+              impress.</p>
+          </div>
+          <span class="svc-arrow">Explore →</span>
         </div>
-        <div class="service-card" data-reveal="fade-up" data-delay="200">
-          <div class="service-icon">
+
+        <div class="svc-card">
+          <div class="svc-num">03</div>
+          <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <circle cx="12" cy="12" r="10" />
               <path d="M12 8v4l3 3" />
             </svg>
           </div>
-          <h3>Space Planning</h3>
-          <p style="font-size:0.875rem">Expert spatial analysis and planning to maximise the functionality and flow of
-            any environment.</p>
+          <div>
+            <h3>Space Planning</h3>
+            <p style="font-size:0.825rem">Expert spatial analysis to maximise functionality and flow of any environment.
+            </p>
+          </div>
+          <span class="svc-arrow">Explore →</span>
         </div>
-        <div class="service-card" data-reveal="fade-up" data-delay="100">
-          <div class="service-icon">
+
+        <div class="svc-card">
+          <div class="svc-num">04</div>
+          <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
           </div>
-          <h3>Renovation</h3>
-          <p style="font-size:0.875rem">Transforming existing spaces with thoughtful interventions that honour history
-            while embracing the new.</p>
+          <div>
+            <h3>Renovation</h3>
+            <p style="font-size:0.825rem">Transforming existing spaces with thoughtful interventions that embrace the
+              new.</p>
+          </div>
+          <span class="svc-arrow">Explore →</span>
         </div>
-        <div class="service-card" data-reveal="fade-up" data-delay="200">
-          <div class="service-icon">
+
+        <div class="svc-card">
+          <div class="svc-num">05</div>
+          <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <polygon
                 points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
           </div>
-          <h3>3D Visualisation</h3>
-          <p style="font-size:0.875rem">Photorealistic renders that let you experience your space before a single
-            element is installed.</p>
+          <div>
+            <h3>3D Visualisation</h3>
+            <p style="font-size:0.825rem">Photorealistic renders — experience your space before a single element is
+              installed.</p>
+          </div>
+          <span class="svc-arrow">Explore →</span>
         </div>
-        <div class="service-card" data-reveal="fade-up" data-delay="300">
-          <div class="service-icon">
+
+        <div class="svc-card">
+          <div class="svc-num">06</div>
+          <div class="svc-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
             </svg>
           </div>
-          <h3>Consultation</h3>
-          <p style="font-size:0.875rem">One-hour design consultations for focused advice on colour, furniture selection,
-            and spatial flow.</p>
+          <div>
+            <h3>Consultation</h3>
+            <p style="font-size:0.825rem">Focused one-hour sessions for colour, furniture selection, and spatial flow
+              advice.</p>
+          </div>
+          <span class="svc-arrow">Explore →</span>
         </div>
+
       </div>
       <div style="text-align:center;margin-top:var(--space-xl);" data-reveal="fade-up">
         <a href="services.html" class="btn btn-primary">Explore All Services</a>
@@ -325,9 +921,9 @@
             <div class="testimonial-content">
               <span class="testimonial-quote-mark">"</span>
               <p class="testimonial-text">
-                Ratnakala completely transformed our apartment into something we couldn't have
-                imagined ourselves. Every detail was considered, every material chosen with care.
-                It feels like a 5-star hotel, but unmistakably ours.
+                Ratnakala completely transformed our apartment into something we couldn't have imagined ourselves.
+                Every detail was considered, every material chosen with care. It feels like a 5-star hotel, but
+                unmistakably ours.
               </p>
               <div class="testimonial-author">
                 <div
@@ -344,9 +940,9 @@
             <div class="testimonial-content">
               <span class="testimonial-quote-mark">"</span>
               <p class="testimonial-text">
-                We hired Ratnakala to redesign our corporate headquarters, and the results exceeded
-                every expectation. Our team productivity is up, client impressions have improved,
-                and the space genuinely reflects who we are as a brand.
+                We hired Ratnakala to redesign our corporate headquarters, and the results exceeded every expectation.
+                Our team productivity is up, client impressions have improved, and the space genuinely reflects our
+                brand.
               </p>
               <div class="testimonial-author">
                 <div
@@ -364,8 +960,8 @@
               <span class="testimonial-quote-mark">"</span>
               <p class="testimonial-text">
                 From the first consultation to the final reveal, working with Ratnakala was a joy.
-                They listened, they understood, and they delivered something extraordinary.
-                I recommend them without reservation.
+                They listened, they understood, and they delivered something extraordinary. I recommend them without
+                reservation.
               </p>
               <div class="testimonial-author">
                 <div
@@ -400,35 +996,44 @@
     </div>
   </section>
 
-  <!-- ═══ LATEST BLOG POSTS ═══ -->
+  <!-- ═══ LATEST BLOG POSTS — FEATURED LAYOUT ═══ -->
   <section class="section-padding">
     <div class="container">
-      <div class="section-header">
-        <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;">
-          <div>
-            <div class="section-eyebrow" data-reveal="fade-up">From the Studio</div>
-            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Design <em>Insights</em></h2>
-          </div>
-          <a href="blog.html" class="btn btn-ghost" data-reveal="fade-up" data-delay="100">All Articles →</a>
+      <div
+        style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;margin-bottom:var(--space-xl);">
+        <div>
+          <div class="section-eyebrow" data-reveal="fade-up">From the Studio</div>
+          <h2 class="section-title" data-reveal="fade-up" data-delay="100">Design <em>Insights</em></h2>
         </div>
+        <a href="blog.html" class="btn btn-ghost" data-reveal="fade-up" data-delay="100">All Articles →</a>
       </div>
-      <div class="grid-3" id="home-blog-grid">
-        <!-- Populated by blog.js -->
+
+      <!-- blog.js will populate #home-blog-grid with up to 3 posts.
+           The scoped CSS above makes the first card wide (featured) and
+           the remaining two render as mini horizontal cards via JS below. -->
+      <div class="blog-featured-grid">
+        <!-- Featured post (first post from Sanity) -->
+        <div id="home-blog-featured" data-reveal="fade-left"></div>
+        <!-- Secondary posts stack -->
+        <div class="blog-secondary-stack" id="home-blog-secondary" data-reveal="fade-right"></div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CTA BANNER ═══ -->
-  <section class="section-padding cta-banner">
+  <!-- ═══ CTA — CINEMATIC FULL-WIDTH ═══ -->
+  <section class="cta-cinematic section-padding">
+    <div class="cta-bg-word" aria-hidden="true">Design</div>
+    <div class="cta-glow" aria-hidden="true"></div>
+    <div class="cta-glow-2" aria-hidden="true"></div>
     <div class="container">
-      <div class="cta-banner-inner">
-        <div data-reveal="fade-left">
-          <div class="section-eyebrow">Start Your Journey</div>
-          <h2>Ready to Transform Your Space?</h2>
-          <p style="margin-top:0.75rem;max-width:420px;">Let's begin with a conversation. Our team is ready to listen
-            and help you create something extraordinary.</p>
-        </div>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;" data-reveal="fade-right">
+      <div class="cta-inner-new">
+        <div class="section-eyebrow" style="justify-content:center;" data-reveal="fade-up">Start Your Journey</div>
+        <h2 data-reveal="fade-up" data-delay="100">Ready to Transform<br><em>Your Space?</em></h2>
+        <div class="cta-divider" data-reveal="fade-up" data-delay="150"></div>
+        <p data-reveal="fade-up" data-delay="200">
+          Let's begin with a conversation. Our team is ready to listen and help you create something extraordinary.
+        </p>
+        <div class="cta-actions" data-reveal="fade-up" data-delay="300">
           <a href="contact.html" class="btn btn-primary">Book a Free Consultation</a>
           <a href="portfolio.html" class="btn btn-ghost">View Portfolio</a>
         </div>
@@ -496,37 +1101,85 @@
     </svg>
   </button>
 
+  <!-- Scripts — order preserved: blog.js first, then main.js -->
   <script src="js/blog.js"></script>
   <script src="js/main.js"></script>
-  <script>
-    // Populate home blog grid with latest 3 posts
-    document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById('home-blog-grid');
-      if (!grid || !window.BLOG_POSTS) return;
-      const posts = window.BLOG_POSTS.slice(0, 3);
-      grid.innerHTML = posts.map((post, i) => `
-      <article class="card blog-card" onclick="window.location='blog-post.html?id=${post.id}'" data-reveal="fade-up" data-delay="${i * 150}">
-        <div class="blog-card-img">
-          <img src="${post.image}" alt="${post.title}" loading="lazy">
-        </div>
-        <div class="blog-card-body">
-          <div class="blog-card-meta">
-            <span class="blog-card-cat">${post.category}</span>
-            <span class="blog-card-date">${post.date}</span>
-          </div>
-          <h3 class="blog-card-title">${post.title}</h3>
-          <p class="blog-card-excerpt">${post.excerpt}</p>
-          <span class="blog-card-read-more">Read Article →</span>
-        </div>
-      </article>
-    `).join('');
 
-      // trigger reveals
-      grid.querySelectorAll('[data-reveal]').forEach(el => {
-        setTimeout(() => el.classList.add('revealed'), 400);
-      });
+  <script>
+    /* ─────────────────────────────────────────────
+       HOMEPAGE BLOG RENDER
+       Renders posts into featured (wide) + secondary
+       (horizontal mini) layout. Sanity data comes
+       from window.BLOG_POSTS set by blog.js.
+       The IDs #home-blog-featured and
+       #home-blog-secondary are homepage-only.
+    ───────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', () => {
+      const featured = document.getElementById('home-blog-featured');
+      const secondary = document.getElementById('home-blog-secondary');
+      if (!featured || !secondary) return;
+
+      function renderHomeBlog() {
+        if (!window.BLOG_POSTS || window.BLOG_POSTS.length === 0) return;
+        const posts = window.BLOG_POSTS.slice(0, 3);
+
+        // Featured post — large card
+        const p0 = posts[0];
+        if (p0) {
+          featured.innerHTML = `
+            <article class="card blog-card" onclick="window.location='blog-post.html?id=${p0.id}'" data-reveal="fade-up">
+              <div class="blog-card-img">
+                <img src="${p0.image || 'images/portfolio-1.jpg'}" alt="${p0.title}" loading="lazy">
+              </div>
+              <div class="blog-card-body">
+                <div class="blog-card-meta">
+                  <span class="blog-card-cat">${p0.category || 'Design'}</span>
+                  <span class="blog-card-date">${p0.date || ''}</span>
+                </div>
+                <h3 class="blog-card-title" style="font-size:1.4rem;">${p0.title}</h3>
+                <p class="blog-card-excerpt">${p0.excerpt || ''}</p>
+                <span class="blog-card-read-more">Read Article →</span>
+              </div>
+            </article>`;
+          featured.querySelectorAll('[data-reveal]').forEach(el => setTimeout(() => el.classList.add('revealed'), 400));
+        }
+
+        // Secondary posts — mini horizontal cards
+        const secondaryPosts = posts.slice(1, 3);
+        secondary.innerHTML = secondaryPosts.map(p => `
+          <div class="blog-mini-card" onclick="window.location='blog-post.html?id=${p.id}'">
+            <div class="blog-mini-img">
+              <img src="${p.image || 'images/portfolio-2.jpg'}" alt="${p.title}" loading="lazy">
+            </div>
+            <div class="blog-mini-body">
+              <div class="blog-mini-cat">${p.category || 'Design'}</div>
+              <h3 class="blog-mini-title">${p.title}</h3>
+              <div class="blog-mini-date">${p.date || ''}</div>
+              <div class="blog-mini-read">Read →</div>
+            </div>
+          </div>`).join('');
+      }
+
+      // If BLOG_POSTS is already populated (sync), render immediately.
+      // Otherwise wait — blog.js calls fetchSanityData which sets window.BLOG_POSTS
+      // and we can poll briefly for it.
+      if (window.BLOG_POSTS && window.BLOG_POSTS.length > 0) {
+        renderHomeBlog();
+      } else {
+        // Poll up to 10s for async Sanity fetch to complete
+        let attempts = 0;
+        const interval = setInterval(() => {
+          attempts++;
+          if (window.BLOG_POSTS && window.BLOG_POSTS.length > 0) {
+            renderHomeBlog();
+            clearInterval(interval);
+          }
+          if (attempts > 100) clearInterval(interval); // 100 * 100ms = 10s
+        }, 100);
+      }
     });
   </script>
+
   <!-- WhatsApp Floating Button -->
   <a href="https://wa.me/918884488198" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
     aria-label="Contact us on WhatsApp">
@@ -536,6 +1189,7 @@
         d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.46-11.28a9.42 9.42 0 0 1 9.44 9.42A9.45 9.45 0 0 1 12.01 21.96c-1.55 0-3.07-.39-4.41-1.12l-.31-.18-3.28.86.88-3.2-.2-.31a9.43 9.43 0 0 1-1.44-5.05 9.42 9.42 0 0 1 9.44-9.42h.01M12.01 1.06h-.01A11.45 11.45 0 0 0 .56 12.51c0 1.95.51 3.86 1.48 5.54L.01 24l6.09-1.6a11.44 11.44 0 0 0 5.92 1.65h.01a11.45 11.45 0 0 0 11.43-11.44v-.01c0-3.06-1.19-5.94-3.35-8.1-2.16-2.17-5.04-3.36-8.1-3.36z" />
     </svg>
   </a>
+
 </body>
 
 </html>
