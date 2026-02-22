@@ -88,7 +88,7 @@ ratnakala
 }
 
 #navbar.scrolled {
-    background: rgba(13, 13, 13, 0.95);
+    background: var(--clr-nav-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 1rem 0;
@@ -149,7 +149,7 @@ ratnakala
     font-weight: 500;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--clr-text-muted);
+    color: var(--clr-text);
     transition: color var(--duration-fast);
     position: relative;
     padding-bottom: 2px;
@@ -168,7 +168,7 @@ ratnakala
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--clr-text);
+    color: var(--clr-gold);
 }
 
 .nav-link:hover::after,
@@ -178,6 +178,12 @@ ratnakala
 
 .nav-cta {
     display: none;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 @media (min-width: 900px) {
@@ -239,7 +245,7 @@ ratnakala
     left: 0;
     right: 0;
     z-index: 998;
-    background: rgba(13, 13, 13, 0.98);
+    background: var(--clr-mobile-menu-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--clr-border);
@@ -350,7 +356,7 @@ ratnakala
     font-size: 1.05rem;
     max-width: 480px;
     margin-bottom: var(--space-lg);
-    color: rgba(245, 245, 240, 0.7);
+    color: var(--clr-text-muted);
     animation: fadeInUp 0.8s 0.7s both;
 }
 

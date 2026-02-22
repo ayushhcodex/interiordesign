@@ -10,6 +10,8 @@
 :root {
   /* Colors */
   --clr-bg: #0D0D0D;
+  --clr-nav-bg: rgba(13, 13, 13, 0.95);
+  --clr-mobile-menu-bg: rgba(13, 13, 13, 0.98);
   --clr-surface: #161616;
   --clr-surface-2: #1E1E1E;
   --clr-border: rgba(232, 114, 42, 0.15);
@@ -24,38 +26,52 @@
   /* Typography */
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
+}
 
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2.5rem;
-  --space-xl: 4rem;
-  --space-2xl: 6rem;
-  --space-3xl: 8rem;
+/* ── Light Mode Variables ─────────── */
+:root.light-mode {
+  --clr-bg: #F9F9F9;
+  --clr-nav-bg: rgba(249, 249, 249, 0.95);
+  --clr-mobile-menu-bg: rgba(249, 249, 249, 0.98);
+  --clr-surface: #FFFFFF;
+  --clr-surface-2: #F0F0F0;
+  --clr-border: rgba(0, 0, 0, 0.1);
+  --clr-text: #1A1A1A;
+  --clr-text-muted: #4A4A4A;
+  --clr-text-dim: #6A6A62;
+  --clr-white: #000000;
+  --clr-gold: #D65A18;
+  --clr-gold-light: #E8722A;
+  --clr-gold-dark: #A54512;
+}
 
-  /* Radii */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
+--space-lg: 2.5rem;
+--space-xl: 4rem;
+--space-2xl: 6rem;
+--space-3xl: 8rem;
 
-  /* Shadows */
-  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
-  --shadow-gold: 0 0 40px rgba(232, 114, 42, 0.12);
+/* Radii */
+--radius-sm: 4px;
+--radius-md: 8px;
+--radius-lg: 16px;
+--radius-xl: 24px;
 
-  /* Transitions */
-  --ease-default: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --duration-fast: 200ms;
-  --duration-md: 400ms;
-  --duration-slow: 700ms;
+/* Shadows */
+--shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
+--shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
+--shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
+--shadow-gold: 0 0 40px rgba(232, 114, 42, 0.12);
 
-  /* Layout */
-  --container-max: 1280px;
-  --nav-height: 88px;
+/* Transitions */
+--ease-default: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+--duration-fast: 200ms;
+--duration-md: 400ms;
+--duration-slow: 700ms;
+
+/* Layout */
+--container-max: 1280px;
+--nav-height: 88px;
 }
 
 /* ── CSS Reset ────────────────────── */
@@ -83,6 +99,7 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--duration-md) var(--ease-default), color var(--duration-md) var(--ease-default);
 }
 
 /* Grain texture overlay */
@@ -353,4 +370,58 @@ p {
 
 .divider.center {
   margin: var(--space-md) auto;
+}
+
+/* ── Theme Toggle ─────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--clr-surface-2);
+  color: var(--clr-text);
+  border: 1px solid var(--clr-border);
+  cursor: pointer;
+  transition: all var(--duration-fast);
+  margin-left: 0.5rem;
+}
+
+.theme-toggle:hover {
+  background: var(--clr-border);
+  color: var(--clr-gold);
+}
+
+:root.light-mode .sun-icon {
+  display: none !important;
+}
+
+:root.light-mode .moon-icon {
+  display: block !important;
+}
+
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.theme-toggle-mobile {
+  display: flex;
+}
+
+@media (min-width: 900px) {
+  .theme-toggle-mobile {
+    display: none;
+  }
+
+  .theme-toggle {
+    display: flex;
+  }
+}
+
+@media (max-width: 899px) {
+  #theme-toggle {
+    display: none;
+  }
 }
