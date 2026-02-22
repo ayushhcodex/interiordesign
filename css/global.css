@@ -14,13 +14,16 @@
   --clr-mobile-menu-bg: rgba(13, 13, 13, 0.98);
   --clr-surface: #161616;
   --clr-surface-2: #1E1E1E;
-  --clr-border: rgba(232, 114, 42, 0.15);
-  --clr-gold: #E8722A;
-  --clr-gold-light: #F5A66B;
-  --clr-gold-dark: #C45A1C;
-  --clr-text: #F5F5F0;
-  --clr-text-muted: #9A9A90;
-  --clr-text-dim: #6A6A62;
+  --clr-border: rgba(200, 114, 72, 0.15);
+  /* Terracotta tint */
+  --clr-gold: #C06132;
+  /* Rich Terracotta */
+  --clr-gold-light: #D67A4E;
+  --clr-gold-dark: #9E4D25;
+  --clr-text: #EFEFE9;
+  /* Softer off-white */
+  --clr-text-muted: #A3A39C;
+  --clr-text-dim: #7A7A71;
   --clr-white: #FFFFFF;
 
   /* Typography */
@@ -30,19 +33,23 @@
 
 /* ── Light Mode Variables ─────────── */
 :root.light-mode {
-  --clr-bg: #F9F9F9;
-  --clr-nav-bg: rgba(249, 249, 249, 0.95);
-  --clr-mobile-menu-bg: rgba(249, 249, 249, 0.98);
+  --clr-bg: #F4F3EF;
+  /* Warm linen/stone */
+  --clr-nav-bg: rgba(244, 243, 239, 0.95);
+  --clr-mobile-menu-bg: rgba(244, 243, 239, 0.99);
   --clr-surface: #FFFFFF;
-  --clr-surface-2: #F0F0F0;
-  --clr-border: rgba(0, 0, 0, 0.1);
-  --clr-text: #1A1A1A;
-  --clr-text-muted: #4A4A4A;
-  --clr-text-dim: #6A6A62;
+  --clr-surface-2: #EAE9E4;
+  --clr-border: rgba(30, 28, 25, 0.08);
+  /* Sophisticated dark border */
+  --clr-text: #2A2826;
+  /* Soft charcoal */
+  --clr-text-muted: #5C5854;
+  --clr-text-dim: #847F7B;
   --clr-white: #000000;
-  --clr-gold: #D65A18;
-  --clr-gold-light: #E8722A;
-  --clr-gold-dark: #A54512;
+  --clr-gold: #B65022;
+  /* Deep luxe terracotta */
+  --clr-gold-light: #C06132;
+  --clr-gold-dark: #8F3E1A;
 }
 
 :root {

@@ -35,111 +35,137 @@
 
   <!-- ═══ HOMEPAGE-ONLY SCOPED STYLES ═══ -->
   <style>
-    /* ── Hero Split Layout ──────────────── */
-    .hero-split {
+    /* ── Hero Cinematic Editorial Layout ── */
+    .hero-cinematic {
       position: relative;
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      align-items: center;
+      padding-top: calc(var(--nav-height) + 2rem);
+      padding-bottom: var(--space-xl);
       overflow: hidden;
       background: var(--clr-bg);
     }
 
-    @media (min-width: 900px) {
-      .hero-split {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: calc(var(--nav-height) + 4rem) var(--space-lg) var(--space-3xl);
+    .hero-cin-container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 var(--space-md);
       position: relative;
       z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
 
     @media (min-width: 900px) {
-      .hero-left {
-        padding: calc(var(--nav-height) + 5rem) var(--space-xl) var(--space-3xl) clamp(1.5rem, 5vw, 5rem);
+      .hero-cin-container {
+        padding: 0 var(--space-lg);
+        grid-template-columns: 5fr 6fr;
+        align-items: center;
       }
     }
 
-    .hero-right {
+    /* Left Text Content */
+    .hero-cin-content {
       position: relative;
-      overflow: hidden;
-      min-height: 55vw;
+      z-index: 3;
+      padding-right: 0;
     }
 
     @media (min-width: 900px) {
-      .hero-right {
-        min-height: 100vh;
+      .hero-cin-content {
+        padding: 2.5rem;
+        background: var(--clr-bg);
+        margin-right: -6rem;
+        /* Creates the overlap */
+        box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
+      }
+
+      :root:not(.light-mode) .hero-cin-content {
+        box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.4);
       }
     }
 
-    /* Single Image inside hero-right */
-    .hero-single-img {
-      position: absolute;
-      inset: 0;
+    /* Right Image Array */
+    .hero-cin-images {
+      position: relative;
+      height: 400px;
+      width: 100%;
+      z-index: 1;
       overflow: hidden;
-      padding: calc(var(--nav-height) + 1rem) 0 0 0;
     }
 
     @media (min-width: 900px) {
-      .hero-single-img {
-        padding: 0;
+      .hero-cin-images {
+        height: 75vh;
+        min-height: 550px;
       }
     }
 
-    .hero-single-img img {
+    .hero-cin-img-main {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transform: scale(1.05);
-      animation: heroZoom 8s ease-out forwards;
+      animation: cinematicZoom 12s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     }
 
-    @keyframes heroZoom {
+    @keyframes cinematicZoom {
       to {
         transform: scale(1);
       }
     }
 
-    /* Gradient fade from left edge so text is readable on mobile */
-    .hero-right::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, var(--clr-bg) 0%, transparent 40%);
-      z-index: 1;
-      pointer-events: none;
+    /* Typographic Refinements */
+    .hero-cin-title {
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--clr-text);
+      font-family: var(--font-heading);
     }
 
-    @media (min-width: 900px) {
-      .hero-right::after {
-        background: none;
-      }
-    }
-
-    /* Vertical label */
-    .hero-vertical-label {
-      position: absolute;
-      left: -3.5rem;
-      top: 50%;
-      transform: translateY(-50%) rotate(-90deg);
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
+    .hero-cin-title em {
+      font-style: italic;
       color: var(--clr-gold);
-      white-space: nowrap;
-      display: none;
+      font-weight: 400;
     }
 
-    @media (min-width: 1100px) {
-      .hero-vertical-label {
-        display: block;
-      }
+    .hero-cin-meta {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--clr-text-dim);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .hero-cin-meta::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--clr-gold);
+    }
+
+    .hero-cin-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--clr-text-muted);
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-cin-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
 
     /* ── Marquee Strip ──────────────────── */
@@ -602,42 +628,42 @@
     </div>
   </nav>
 
-  <!-- ═══ HERO — EDITORIAL SPLIT ═══ -->
-  <section class="hero-split" aria-label="Hero">
-    <!-- Left: Content -->
-    <div class="hero-left">
-      <div class="hero-badge" style="animation:fadeInUp 0.8s 0.3s both;">✦ Designing <span
-          style="color:var(--clr-gold)">Premium Homes</span> for Modern Living · Est. 2015</div>
-      <h1 class="hero-title" style="animation:fadeInUp 0.8s 0.5s both;">
-        Custom Furniture & Luxury Interior Design in Devanagere
-      </h1>
-      <p class="hero-desc" style="animation:fadeInUp 0.8s 0.7s both;">
-        Crafted by <span style="color:var(--clr-gold)">Ambika Furnitures</span>. Designed for generations. Backed by our
-        in-house manufacturing at <span style="color:var(--clr-gold)">Ambika Furnitures</span>, we create interiors that
-        merge structural precision with refined aesthetics—where enduring craftsmanship meets contemporary planning.
-      </p>
-      <div class="hero-actions" style="animation:fadeInUp 0.8s 0.9s both;">
-        <a href="portfolio.html" class="btn btn-primary">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-          View Our Work
-        </a>
-        <a href="contact.html" class="btn btn-ghost">Book a Consultation</a>
-      </div>
-      <!-- Scroll indicator -->
-      <div class="hero-scroll" style="position:static;margin-top:var(--space-lg);animation:fadeInUp 1s 1.2s both;">
-        <span class="hero-scroll-line"></span>
-        <span class="hero-scroll-label">Scroll</span>
-      </div>
-    </div>
+  <!-- ═══ HERO — EDITORIAL CINEMATIC ═══ -->
+  <section class="hero-cinematic" aria-label="Hero">
+    <div class="hero-cin-container">
 
-    <!-- Right: Single Image Hero -->
-    <div class="hero-right">
-      <div class="hero-single-img">
-        <img src="images/hero-natural.png" alt="Natural luxury living room interior design in Davanagere"
-          loading="eager">
+      <!-- Left: Content Layer -->
+      <div class="hero-cin-content">
+        <div class="hero-cin-meta" style="animation:fadeInUp 0.8s 0.2s both;">
+          Est. 2015 <span>·</span> Davanagere
+        </div>
+
+        <h1 class="hero-cin-title" style="animation:fadeInUp 0.8s 0.3s both;">
+          Quiet Luxury &<br><em>Enduring</em> Spaces.
+        </h1>
+
+        <p class="hero-cin-desc" style="animation:fadeInUp 0.8s 0.4s both;">
+          At <span style="color:var(--clr-text)">Ratnakala</span>, brought to life through the heritage of Ambika
+          Furnitures, we craft bespoke interiors that balance structural precision with refined, warm minimalism.
+          Designed for generations.
+        </p>
+
+        <div class="hero-cin-actions" style="animation:fadeInUp 0.8s 0.5s both;">
+          <a href="portfolio.html" class="btn btn-primary">
+            Explore Portfolio
+          </a>
+          <a href="contact.html" class="btn btn-outline">
+            Request Consultation
+          </a>
+        </div>
       </div>
+
+      <!-- Right: Image Layer -->
+      <div class="hero-cin-images">
+        <img class="hero-cin-img-main" src="images/hero-natural.png"
+          alt="Natural luxury living room interior design in Davanagere" loading="eager">
+      </div>
+
     </div>
   </section>
 
