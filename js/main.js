@@ -1,19 +1,14 @@
 /* ════════════════════════════════════════
    LUMINA INTERIORS — main.js
-   Nav, Preloader, Scroll Reveal, Stats, 
+   Nav, Scroll Reveal, Stats, 
    Testimonials, Back-to-Top
 ════════════════════════════════════════ */
 
 'use strict';
 
-// ── Preloader ─────────────────────────
+// ── Page Enter Animation ──────────────
 window.addEventListener('load', () => {
-  const preloader = document.getElementById('preloader');
-  if (!preloader) return;
-  setTimeout(() => {
-    preloader.classList.add('hidden');
-    document.body.classList.add('page-enter');
-  }, 600);
+  document.body.classList.add('page-enter');
 });
 
 // ── Sticky Nav ────────────────────────
