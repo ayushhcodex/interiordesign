@@ -1,0 +1,23 @@
+{
+    "_type": "post",
+    "title": "Agent Test Post",
+    "slug": {
+        "_type": "slug",
+        "current": "agent-test-post"
+    },
+    "excerpt": "This is a test post created by the agent.",
+    "publishedAt": "2026-02-22T10:00:00Z",
+    "body": [
+        {
+            "_type": "block",
+            "style": "normal",
+            "children": [
+                {
+                    "_type": "span",
+                    "marks": [],
+                    "text": "This is the body of the test post."
+                }
+            ]
+        }
+    ]
+}
