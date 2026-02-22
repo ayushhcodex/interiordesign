@@ -121,6 +121,12 @@ ratnakala
     line-height: 1;
 }
 
+@media (max-width: 400px) {
+    .nav-logo-main {
+        font-size: 1.25rem;
+    }
+}
+
 .nav-logo-sub {
     font-size: 0.55rem;
     letter-spacing: 0.3em;
@@ -208,7 +214,8 @@ ratnakala
     flex-direction: column;
     gap: 5px;
     padding: 8px;
-    margin-right: 0.5rem;
+    margin-right: -8px;
+    /* Offset padding for perfect flush right */
     cursor: pointer;
 }
 

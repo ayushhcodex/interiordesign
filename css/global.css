@@ -45,33 +45,34 @@
   --clr-gold-dark: #A54512;
 }
 
---space-lg: 2.5rem;
---space-xl: 4rem;
---space-2xl: 6rem;
---space-3xl: 8rem;
+:root {
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  --space-3xl: 8rem;
 
-/* Radii */
---radius-sm: 4px;
---radius-md: 8px;
---radius-lg: 16px;
---radius-xl: 24px;
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
 
-/* Shadows */
---shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
---shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
---shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
---shadow-gold: 0 0 40px rgba(232, 114, 42, 0.12);
+  /* Shadows */
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
+  --shadow-gold: 0 0 40px rgba(232, 114, 42, 0.12);
 
-/* Transitions */
---ease-default: cubic-bezier(0.25, 0.46, 0.45, 0.94);
---ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
---duration-fast: 200ms;
---duration-md: 400ms;
---duration-slow: 700ms;
+  /* Transitions */
+  --ease-default: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 200ms;
+  --duration-md: 400ms;
+  --duration-slow: 700ms;
 
-/* Layout */
---container-max: 1280px;
---nav-height: 88px;
+  /* Layout */
+  --container-max: 1280px;
+  --nav-height: 88px;
 }
 
 /* ── CSS Reset ────────────────────── */
@@ -385,7 +386,6 @@ p {
   border: 1px solid var(--clr-border);
   cursor: pointer;
   transition: all var(--duration-fast);
-  margin-left: 0.5rem;
 }
 
 .theme-toggle:hover {
@@ -421,7 +421,5 @@ p {
 }
 
 @media (max-width: 899px) {
-  #theme-toggle {
-    display: none;
-  }
+  /* Removed #theme-toggle { display: none; } so it shows on mobile */
 }
