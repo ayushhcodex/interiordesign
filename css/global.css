@@ -95,6 +95,8 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -105,6 +107,7 @@ body {
   line-height: 1.65;
   font-weight: 400;
   overflow-x: hidden;
+  max-width: 100vw;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color var(--duration-md) var(--ease-default), color var(--duration-md) var(--ease-default);
@@ -288,22 +291,6 @@ p {
 
 .flex-col {
   flex-direction: column;
-}
-
-.items-center {
-  align-items: center;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.gap-sm {
-  gap: var(--space-sm);
-}
-
-.gap-md {
-  gap: var(--space-md);
 }
 
 /* ── Grid ─────────────────────────── */
