@@ -84,13 +84,14 @@ ratnakala
     right: 0;
     z-index: 1000;
     padding: 1.5rem 0;
+    background: var(--clr-nav-bg, rgba(13, 13, 13, 0.95));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid transparent;
     transition: all 0.4s var(--ease-default);
 }
 
 #navbar.scrolled {
-    background: var(--clr-nav-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     padding: 1rem 0;
     border-bottom: 1px solid var(--clr-border);
 }
