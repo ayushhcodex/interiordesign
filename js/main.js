@@ -21,10 +21,10 @@ if (navbar) {
 
 // Active nav link
 const navLinks = document.querySelectorAll('.nav-link');
-const currentPage = window.location.pathname.split('/').pop().replace(/\.html$/, '') || 'index';
+const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 navLinks.forEach(link => {
   const href = link.getAttribute('href');
-  if (href && (href === currentPage || (currentPage === '' && href === 'index'))) {
+  if (href && (href === currentPage || (currentPage === '' && href === 'index.html'))) {
     link.classList.add('active');
   }
 });

@@ -78,39 +78,32 @@
       }
     }
 
-    /* Collage grid inside hero-right */
-    .hero-collage {
+    /* Single Image inside hero-right */
+    .hero-single-img {
       position: absolute;
       inset: 0;
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 4px;
-      padding: calc(var(--nav-height) + 1rem) 4px 4px 4px;
-    }
-
-    .hero-collage-img {
       overflow: hidden;
-      position: relative;
+      padding: calc(var(--nav-height) + 1rem) 0 0 0;
     }
 
-    .hero-collage-img:first-child {
-      grid-row: 1 / 3;
+    @media (min-width: 900px) {
+      .hero-single-img {
+        padding: 0;
+      }
     }
 
-    .hero-collage-img img {
+    .hero-single-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 8s ease-out;
-    }
-
-    .hero-collage-img img.loaded {
-      transform: scale(1);
-    }
-
-    .hero-collage-img img {
       transform: scale(1.05);
+      animation: heroZoom 8s ease-out forwards;
+    }
+
+    @keyframes heroZoom {
+      to {
+        transform: scale(1);
+      }
     }
 
     /* Gradient fade from left edge so text is readable on mobile */
@@ -555,21 +548,21 @@
   <nav id="navbar">
     <div class="container">
       <div class="nav-inner">
-        <a href="index" class="nav-logo">
+        <a href="index.html" class="nav-logo">
           <span class="nav-logo-main">Ratnakala</span>
           <span class="nav-logo-sub">Interiors</span>
         </a>
         <div class="nav-links">
-          <a href="index" class="nav-link">Home</a>
-          <a href="about" class="nav-link">About</a>
-          <a href="services" class="nav-link">Services</a>
-          <a href="portfolio" class="nav-link">Portfolio</a>
-          <a href="design-ideas" class="nav-link">Design Ideas</a>
-          <a href="blog" class="nav-link">Blog</a>
-          <a href="contact" class="nav-link">Contact</a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="portfolio.html" class="nav-link">Portfolio</a>
+          <a href="design-ideas.html" class="nav-link">Design Ideas</a>
+          <a href="blog.html" class="nav-link">Blog</a>
+          <a href="contact.html" class="nav-link">Contact</a>
         </div>
         <div class="nav-actions">
-          <a href="contact" class="btn btn-primary nav-cta">Get a Quote</a>
+          <a href="contact.html" class="btn btn-primary nav-cta">Get a Quote</a>
           <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Light/Dark Mode">
             <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -599,13 +592,13 @@
     </div>
     <!-- Mobile Menu -->
     <div id="mobile-menu">
-      <a href="index" class="mobile-nav-link">Home</a>
-      <a href="about" class="mobile-nav-link">About</a>
-      <a href="services" class="mobile-nav-link">Services</a>
-      <a href="portfolio" class="mobile-nav-link">Portfolio</a>
-      <a href="design-ideas" class="mobile-nav-link">Design Ideas</a>
-      <a href="blog" class="mobile-nav-link">Blog</a>
-      <a href="contact" class="mobile-nav-link">Contact</a>
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="about.html" class="mobile-nav-link">About</a>
+      <a href="services.html" class="mobile-nav-link">Services</a>
+      <a href="portfolio.html" class="mobile-nav-link">Portfolio</a>
+      <a href="design-ideas.html" class="mobile-nav-link">Design Ideas</a>
+      <a href="blog.html" class="mobile-nav-link">Blog</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
     </div>
   </nav>
 
@@ -624,13 +617,13 @@
         merge structural precision with refined aesthetics—where enduring craftsmanship meets contemporary planning.
       </p>
       <div class="hero-actions" style="animation:fadeInUp 0.8s 0.9s both;">
-        <a href="portfolio" class="btn btn-primary">
+        <a href="portfolio.html" class="btn btn-primary">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
           View Our Work
         </a>
-        <a href="contact" class="btn btn-ghost">Book a Consultation</a>
+        <a href="contact.html" class="btn btn-ghost">Book a Consultation</a>
       </div>
       <!-- Scroll indicator -->
       <div class="hero-scroll" style="position:static;margin-top:var(--space-lg);animation:fadeInUp 1s 1.2s both;">
@@ -639,20 +632,11 @@
       </div>
     </div>
 
-    <!-- Right: Image Collage -->
+    <!-- Right: Single Image Hero -->
     <div class="hero-right">
-      <div class="hero-collage">
-        <div class="hero-collage-img">
-          <img src="images/portfolio-3.jpg" alt="Luxury interior design penthouse suite in Davanagere" loading="eager">
-        </div>
-        <div class="hero-collage-img">
-          <img src="images/portfolio-1.jpg" alt="Modern interior design bedroom in Davanagere Karnataka"
-            loading="eager">
-        </div>
-        <div class="hero-collage-img">
-          <img src="images/portfolio-2.jpg" alt="Contemporary interior design kitchen by Ratnakala Interiors Davanagere"
-            loading="eager">
-        </div>
+      <div class="hero-single-img">
+        <img src="images/hero-natural.png" alt="Natural luxury living room interior design in Davanagere"
+          loading="eager">
       </div>
     </div>
   </section>
@@ -714,7 +698,7 @@
             and commercial environments, our team brings craft and conceptual rigour to every brief.
           </p>
           <div style="margin-top:var(--space-lg);" data-reveal="fade-up" data-delay="500">
-            <a href="about" class="btn btn-outline">Our Story →</a>
+            <a href="about.html" class="btn btn-outline">Our Story →</a>
           </div>
         </div>
       </div>
@@ -757,7 +741,7 @@
       </div>
       <!-- Asymmetric grid: 1 large left + 3 small right -->
       <div class="projects-mosaic">
-        <article class="card project-card" onclick="window.location='portfolio'" data-reveal="fade-left">
+        <article class="card project-card" onclick="window.location='portfolio.html'" data-reveal="fade-left">
           <div class="project-card-img">
             <img src="images/portfolio-3.jpg" alt="The Penthouse Suite" loading="lazy">
             <div class="project-card-overlay">
@@ -772,7 +756,8 @@
             <p style="font-size:0.85rem;color:var(--clr-text-dim)">Mumbai, India</p>
           </div>
         </article>
-        <article class="card project-card" onclick="window.location='portfolio'" data-reveal="fade-up" data-delay="100">
+        <article class="card project-card" onclick="window.location='portfolio.html'" data-reveal="fade-up"
+          data-delay="100">
           <div class="project-card-img">
             <img src="images/portfolio-2.jpg" alt="The Brass Kitchen" loading="lazy">
             <div class="project-card-overlay">
@@ -787,7 +772,8 @@
             <p style="font-size:0.85rem;color:var(--clr-text-dim)">Bangalore, India</p>
           </div>
         </article>
-        <article class="card project-card" onclick="window.location='portfolio'" data-reveal="fade-up" data-delay="200">
+        <article class="card project-card" onclick="window.location='portfolio.html'" data-reveal="fade-up"
+          data-delay="200">
           <div class="project-card-img">
             <img src="images/portfolio-4.jpg" alt="The Jade Retreat" loading="lazy">
             <div class="project-card-overlay">
@@ -804,7 +790,7 @@
         </article>
       </div>
       <div style="text-align:center;margin-top:var(--space-xl);" data-reveal="fade-up">
-        <a href="portfolio" class="btn btn-outline">View All Projects</a>
+        <a href="portfolio.html" class="btn btn-outline">View All Projects</a>
       </div>
     </div>
   </section>
@@ -832,7 +818,7 @@
         </div>
       </div>
       <div style="text-align:center;margin-top:var(--space-xl);" data-reveal="fade-up">
-        <a href="services" class="btn btn-primary">Explore All Services</a>
+        <a href="services.html" class="btn btn-primary">Explore All Services</a>
       </div>
     </div>
   </section>
@@ -935,7 +921,7 @@
           <div class="section-eyebrow" data-reveal="fade-up">From the Studio</div>
           <h2 class="section-title" data-reveal="fade-up" data-delay="100">Design <em>Insights</em></h2>
         </div>
-        <a href="blog" class="btn btn-ghost" data-reveal="fade-up" data-delay="100">All Articles →</a>
+        <a href="blog.html" class="btn btn-ghost" data-reveal="fade-up" data-delay="100">All Articles →</a>
       </div>
 
       <!-- blog.js will populate #home-blog-grid with up to 3 posts.
@@ -964,8 +950,8 @@
           Let's begin with a conversation. Our team is ready to listen and help you create something extraordinary.
         </p>
         <div class="cta-actions" data-reveal="fade-up" data-delay="300">
-          <a href="contact" class="btn btn-primary">Book a Free Consultation</a>
-          <a href="portfolio" class="btn btn-ghost">View Portfolio</a>
+          <a href="contact.html" class="btn btn-primary">Book a Free Consultation</a>
+          <a href="portfolio.html" class="btn btn-ghost">View Portfolio</a>
         </div>
       </div>
     </div>
@@ -989,22 +975,22 @@
         <div class="footer-col">
           <h4>Navigate</h4>
           <div class="footer-links">
-            <a href="index" class="footer-link">Home</a>
-            <a href="about" class="footer-link">About Us</a>
-            <a href="services" class="footer-link">Services</a>
-            <a href="portfolio" class="footer-link">Portfolio</a>
-            <a href="blog" class="footer-link">Blog</a>
-            <a href="contact" class="footer-link">Contact</a>
+            <a href="index.html" class="footer-link">Home</a>
+            <a href="about.html" class="footer-link">About Us</a>
+            <a href="services.html" class="footer-link">Services</a>
+            <a href="portfolio.html" class="footer-link">Portfolio</a>
+            <a href="blog.html" class="footer-link">Blog</a>
+            <a href="contact.html" class="footer-link">Contact</a>
           </div>
         </div>
         <div class="footer-col">
           <h4>Services</h4>
           <div class="footer-links">
-            <a href="services" class="footer-link">Residential Design</a>
-            <a href="services" class="footer-link">Commercial Spaces</a>
-            <a href="services" class="footer-link">Space Planning</a>
-            <a href="services" class="footer-link">Renovation</a>
-            <a href="services" class="footer-link">3D Visualisation</a>
+            <a href="services.html" class="footer-link">Residential Design</a>
+            <a href="services.html" class="footer-link">Commercial Spaces</a>
+            <a href="services.html" class="footer-link">Space Planning</a>
+            <a href="services.html" class="footer-link">Renovation</a>
+            <a href="services.html" class="footer-link">3D Visualisation</a>
           </div>
         </div>
         <div class="footer-col">
@@ -1057,7 +1043,7 @@
         const p0 = posts[0];
         if (p0) {
           featured.innerHTML = `
-            <article class="card blog-card" onclick="window.location='blog-post?id=${p0.id}'" data-reveal="fade-up">
+            <article class="card blog-card" onclick="window.location='blog-post.html?id=${p0.id}'" data-reveal="fade-up">
               <div class="blog-card-img">
                 <img src="${p0.image || 'images/portfolio-1.jpg'}" alt="${p0.title}" loading="lazy">
               </div>
@@ -1077,7 +1063,7 @@
         // Secondary posts — mini horizontal cards
         const secondaryPosts = posts.slice(1, 3);
         secondary.innerHTML = secondaryPosts.map(p => `
-          <div class="blog-mini-card" onclick="window.location='blog-post?id=${p.id}'">
+          <div class="blog-mini-card" onclick="window.location='blog-post.html?id=${p.id}'">
             <div class="blog-mini-img">
               <img src="${p.image || 'images/portfolio-2.jpg'}" alt="${p.title}" loading="lazy">
             </div>

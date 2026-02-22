@@ -36,7 +36,7 @@ function renderBlogListing() {
       grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 2rem;">No posts found.</div>';
     } else {
       grid.innerHTML = paginated.map(post => `
-        <article class="card blog-card" onclick="window.location='blog-post?id=${post.id}'" data-reveal="fade-up">
+        <article class="card blog-card" onclick="window.location='blog-post.html?id=${post.id}'" data-reveal="fade-up">
           <div class="blog-card-img">
             <img src="${post.image}" alt="${post.title}" loading="lazy">
           </div>
@@ -106,7 +106,7 @@ function renderBlogPost() {
     postContainer.innerHTML = `
       <div style="text-align:center;padding:4rem 0;">
         <h2>Post not found</h2>
-        <a href="blog" class="btn btn-outline" style="display:inline-flex;margin-top:1.5rem;">← Back to Blog</a>
+        <a href="blog.html" class="btn btn-outline" style="display:inline-flex;margin-top:1.5rem;">← Back to Blog</a>
       </div>`;
     return;
   }
@@ -118,8 +118,8 @@ function renderBlogPost() {
   const breadcrumb = document.getElementById('post-breadcrumb');
   if (breadcrumb) {
     breadcrumb.innerHTML = `
-      <a href="index">Home</a> <span>›</span>
-      <a href="blog">Blog</a> <span>›</span>
+      <a href="index.html">Home</a> <span>›</span>
+      <a href="blog.html">Blog</a> <span>›</span>
       <span>${post.title}</span>`;
   }
 
@@ -153,7 +153,7 @@ function renderBlogPost() {
   if (relatedContainer) {
     const related = BLOG_POSTS.filter(p => p.id !== id).slice(0, 3);
     relatedContainer.innerHTML = related.map(p => `
-      <article class="card blog-card" onclick="window.location='blog-post?id=${p.id}'">
+      <article class="card blog-card" onclick="window.location='blog-post.html?id=${p.id}'">
         <div class="blog-card-img">
           <img src="${p.image}" alt="${p.title}" loading="lazy">
         </div>
