@@ -796,117 +796,34 @@
     </div>
   </section>
 
-  <!-- ═══ SERVICES — NUMBERED PREMIUM CARDS ═══ -->
+  <!-- ═══ RENOVATION DESIGNS — SANITY CAROUSEL ═══ -->
   <section class="section-padding"
     style="background:var(--clr-surface);border-top:1px solid var(--clr-border);border-bottom:1px solid var(--clr-border);">
     <div class="container">
       <div class="section-header centered">
-        <div class="section-eyebrow" data-reveal="fade-up">What We Do</div>
-        <h2 class="section-title" data-reveal="fade-up" data-delay="100">Our Services</h2>
+        <div class="section-eyebrow" data-reveal="fade-up">Our Work</div>
+        <h2 class="section-title" data-reveal="fade-up" data-delay="100">Some of Our <em>Renovation</em> Designs</h2>
+        <p class="section-subtitle" data-reveal="fade-up" data-delay="200">
+          Browse trending renovations across bedrooms, kitchens, and living rooms — updated regularly.
+        </p>
       </div>
-      <div class="services-numbered" data-reveal="fade-up" data-delay="200">
-
-        <div class="svc-card">
-          <div class="svc-num">01</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
+      <!-- Carousels injected here by JS -->
+      <div id="renovation-carousels">
+        <!-- Loading skeleton -->
+        <div class="reno-skeleton">
+          <div class="reno-skeleton-bar" style="width:260px;height:22px;margin-bottom:1.5rem;"></div>
+          <div style="display:flex;gap:1rem;">
+            <div class="reno-skeleton-bar" style="flex:1;aspect-ratio:4/3;border-radius:var(--radius-lg);"></div>
+            <div class="reno-skeleton-bar" style="flex:1;aspect-ratio:4/3;border-radius:var(--radius-lg);"></div>
           </div>
-          <div>
-            <h3>Residential Design</h3>
-            <p style="font-size:0.825rem">From intimate apartments to sprawling villas — homes that reflect your life
-              perfectly.</p>
-          </div>
-          <span class="svc-arrow">Explore →</span>
         </div>
-
-        <div class="svc-card">
-          <div class="svc-num">02</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="2" y="3" width="20" height="14" rx="2" />
-              <line x1="8" y1="21" x2="16" y2="21" />
-              <line x1="12" y1="17" x2="12" y2="21" />
-            </svg>
-          </div>
-          <div>
-            <h3>Commercial Spaces</h3>
-            <p style="font-size:0.825rem">Offices, hotels, restaurants and retail spaces designed to perform and
-              impress.</p>
-          </div>
-          <span class="svc-arrow">Explore →</span>
-        </div>
-
-        <div class="svc-card">
-          <div class="svc-num">03</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 8v4l3 3" />
-            </svg>
-          </div>
-          <div>
-            <h3>Space Planning</h3>
-            <p style="font-size:0.825rem">Expert spatial analysis to maximise functionality and flow of any environment.
-            </p>
-          </div>
-          <span class="svc-arrow">Explore →</span>
-        </div>
-
-        <div class="svc-card">
-          <div class="svc-num">04</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-            </svg>
-          </div>
-          <div>
-            <h3>Renovation</h3>
-            <p style="font-size:0.825rem">Transforming existing spaces with thoughtful interventions that embrace the
-              new.</p>
-          </div>
-          <span class="svc-arrow">Explore →</span>
-        </div>
-
-        <div class="svc-card">
-          <div class="svc-num">05</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <polygon
-                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
-          </div>
-          <div>
-            <h3>3D Visualisation</h3>
-            <p style="font-size:0.825rem">Photorealistic renders — experience your space before a single element is
-              installed.</p>
-          </div>
-          <span class="svc-arrow">Explore →</span>
-        </div>
-
-        <div class="svc-card">
-          <div class="svc-num">06</div>
-          <div class="svc-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-            </svg>
-          </div>
-          <div>
-            <h3>Consultation</h3>
-            <p style="font-size:0.825rem">Focused one-hour sessions for colour, furniture selection, and spatial flow
-              advice.</p>
-          </div>
-          <span class="svc-arrow">Explore →</span>
-        </div>
-
       </div>
       <div style="text-align:center;margin-top:var(--space-xl);" data-reveal="fade-up">
         <a href="services.html" class="btn btn-primary">Explore All Services</a>
       </div>
     </div>
   </section>
+  <script src="js/renovations.js"></script>
 
   <!-- ═══ TESTIMONIALS ═══ -->
   <section class="section-padding testimonials-section">

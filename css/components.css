@@ -1461,3 +1461,122 @@ ratnakala
 .blog-post-body ul li {
     margin-bottom: 0.5rem;
 }
+
+/* ── RENOVATION CAROUSELS ────────── */
+.reno-category {
+    margin-bottom: var(--space-xl);
+}
+
+.reno-category:last-child {
+    margin-bottom: 0;
+}
+
+.reno-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 600;
+    color: var(--clr-text);
+    margin-bottom: var(--space-md);
+}
+
+.reno-highlight {
+    color: var(--clr-gold);
+    font-style: italic;
+}
+
+.reno-carousel-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.reno-viewport {
+    overflow: hidden;
+    flex: 1;
+    border-radius: var(--radius-lg);
+}
+
+.reno-track {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.45s var(--ease-default);
+}
+
+.reno-slide {
+    min-width: calc(50% - 0.5rem);
+    flex-shrink: 0;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+@media (max-width: 767px) {
+    .reno-slide {
+        min-width: 100%;
+    }
+}
+
+.reno-slide img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s var(--ease-default);
+}
+
+.reno-slide:hover img {
+    transform: scale(1.04);
+}
+
+/* Arrows */
+.reno-arrow {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--clr-border);
+    background: var(--clr-surface);
+    color: var(--clr-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--duration-fast);
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.reno-prev {
+    margin-right: -22px;
+}
+
+.reno-next {
+    margin-left: -22px;
+}
+
+.reno-arrow:hover {
+    border-color: var(--clr-gold);
+    color: var(--clr-gold);
+    background: var(--clr-surface-2);
+}
+
+/* Skeleton */
+.reno-skeleton {
+    padding: 1rem 0;
+}
+
+.reno-skeleton-bar {
+    background: linear-gradient(90deg, var(--clr-surface-2) 25%, var(--clr-surface) 50%, var(--clr-surface-2) 75%);
+    background-size: 200% 100%;
+    animation: skeletonShimmer 1.5s ease infinite;
+    border-radius: var(--radius-md);
+}
+
+@keyframes skeletonShimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
