@@ -3,40 +3,40 @@ import re
 
 updates = {
     'index.html': {
-        'title': 'Luxury Interior Designers in Davanagere, Karnataka | Ratnakala Interiors',
-        'desc': "Ratnakala Interiors — Davanagere's premier interior design studio crafting timeless luxury spaces across Karnataka. Specialized in residential and commercial interior design."
+        'title': 'Luxury Interior Designers | Serving Davanagere, Shivamogga, Hubli & More',
+        'desc': "Ratnakala Interiors — Central Karnataka's premier interior design studio crafting timeless luxury spaces across Davanagere, Harihara, Chitradurga, Shimoga, Haveri, Hubli-Dharwad, Hampi, Chikkamagaluru, and Ballari."
     },
     'about.html': {
-        'title': 'About Ratnakala Interiors | Top Interior Designers in Davanagere',
-        'desc': 'Learn about Ratnakala Interiors, the leading luxury interior design studio based in Davanagere, Karnataka, with over a decade of excellence.'
+        'title': 'About Ratnakala Interiors | Top Interior Designers in Central Karnataka',
+        'desc': 'Learn about Ratnakala Interiors, the leading luxury interior design studio based in Davanagere, serving Shimoga, Chitradurga, Hubli-Dharwad, Bellary and beyond.'
     },
     'services.html': {
-        'title': 'Interior Design Services in Davanagere, Karnataka | Ratnakala Interiors',
-        'desc': 'Explore our bespoke interior design services in Davanagere. We offer 3D visualization, space planning, bespoke furniture, and complete renovations.'
+        'title': 'Interior Design Services | Davanagere, Shimoga, Hubli-Dharwad',
+        'desc': 'Explore our bespoke interior design services across Central Karnataka. We offer 3D visualization, space planning, bespoke furniture, and complete renovations.'
     },
     'portfolio.html': {
-        'title': 'Interior Design Portfolio | Project Gallery in Davanagere & Beyond',
-        'desc': 'View our extensive portfolio of luxury residential and commercial interior design projects crafted in Davanagere and across Karnataka.'
+        'title': 'Interior Design Portfolio | Project Gallery Karnataka',
+        'desc': 'View our extensive portfolio of luxury residential and commercial interior design projects crafted in Davanagere, Shimoga, Hubli-Dharwad, Chitradurga, and beyond.'
     },
     'design-ideas.html': {
-        'title': 'Interior Design Ideas & Inspiration | Ratnakala Interiors Davanagere',
-        'desc': 'Discover trending interior design ideas, modern bedroom concepts, and luxury kitchen inspirations from the leading designers in Davanagere, Karnataka.'
+        'title': 'Interior Design Ideas & Inspiration | Ratnakala Interiors',
+        'desc': 'Discover trending interior design ideas, modern bedroom concepts, and luxury kitchen inspirations from the leading designers in Central Karnataka.'
     },
     'blog.html': {
-        'title': 'Interior Design Blog | Insights from Experts in Davanagere',
-        'desc': 'Read the latest interior design trends, tips, and insights from the expert team at Ratnakala Interiors in Davanagere, Karnataka.'
+        'title': 'Interior Design Blog | Insights from Experts',
+        'desc': 'Read the latest interior design trends, tips, and insights from the expert team at Ratnakala Interiors serving Davanagere, Shimoga, Hubli, and Bellary.'
     },
     'blog-post.html': {
-        'title': 'Interior Design Article | Ratnakala Interiors Davanagere',
-        'desc': 'Read our in-depth article on interior design strategies, aesthetics, and implementation tips directly from our Davanagere studio experts.'
+        'title': 'Interior Design Article | Ratnakala Interiors',
+        'desc': 'Read our in-depth article on interior design strategies, aesthetics, and implementation tips directly from our Central Karnataka studio experts.'
     },
     'contact.html': {
-        'title': 'Contact Ratnakala Interiors | Interior Design Studio in Davanagere',
-        'desc': 'Get in touch with Ratnakala Interiors. Visit our design studio in Davanagare or our branch in Channagiri, Karnataka, to discuss your dream project.'
+        'title': 'Contact Ratnakala Interiors | Interior Design Studio',
+        'desc': 'Get in touch with Ratnakala Interiors. Visit our design studios in Davanagere and Channagiri, or contact us for projects in Shimoga, Hubli-Dharwad, Chitradurga, Hampi, and Ballari.'
     },
     'trialllll.html': { # updating just in case
-        'title': 'Luxury Interior Designers in Davanagere, Karnataka | Ratnakala Interiors',
-        'desc': "Ratnakala Interiors — Davanagere's premier interior design studio crafting timeless luxury spaces across Karnataka. Specialized in residential and commercial interior design."
+        'title': 'Luxury Interior Designers | Serving Davanagere, Shivamogga, Hubli & More',
+        'desc': "Ratnakala Interiors — Central Karnataka's premier interior design studio crafting timeless luxury spaces across Davanagere, Harihara, Chitradurga, Shimoga, Haveri, Hubli-Dharwad, Hampi, Chikkamagaluru, and Ballari."
     }
 }
 

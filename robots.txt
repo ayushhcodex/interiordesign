@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /trialllll.html
+
+Sitemap: https://ratnakalainteriors.com/sitemap.xml

@@ -10,7 +10,7 @@ const PORTFOLIO_ITEMS = [
         id: 1,
         title: 'The Penthouse Suite',
         category: 'Living Room',
-        location: 'Mumbai, India',
+        location: 'Hubli-Dharwad, Karnataka',
         year: '2025',
         image: 'images/portfolio-3.jpg',
         description: 'A sweeping penthouse transformation that blends raw concrete with warm linen and travertine. Arched doorways and gallery walls create a sophisticated gallery-home feel.'
@@ -19,7 +19,7 @@ const PORTFOLIO_ITEMS = [
         id: 2,
         title: 'The Jade Bedroom',
         category: 'Bedroom',
-        location: 'Delhi, India',
+        location: 'Chitradurga, Karnataka',
         year: '2025',
         image: 'images/portfolio-1.jpg',
         description: 'A sanctuary of calm featuring fluted wall panels, warm ambient cove lighting, and a custom linen headboard. Brass and stone accents add quiet luxury.'
@@ -28,7 +28,7 @@ const PORTFOLIO_ITEMS = [
         id: 3,
         title: 'The Brass Kitchen',
         category: 'Kitchen',
-        location: 'Bangalore, India',
+        location: 'Shimoga, Karnataka',
         year: '2024',
         image: 'images/portfolio-2.jpg',
         description: 'A chef\'s kitchen that refuses to compromise on beauty. Dark walnut cabinetry, a Calacatta marble island, and sculptural brass pendants define this culinary haven.'
@@ -46,7 +46,7 @@ const PORTFOLIO_ITEMS = [
         id: 5,
         title: 'The Executive Study',
         category: 'Commercial',
-        location: 'Mumbai, India',
+        location: 'Hubli-Dharwad, Karnataka',
         year: '2024',
         image: 'images/portfolio-5.jpg',
         description: 'A high-powered executive office designed for focused work and powerful impressions. Walnut, leather, and deep green against a dramatic city backdrop.'
