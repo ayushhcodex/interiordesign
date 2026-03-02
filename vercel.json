@@ -2,11 +2,7 @@
     "cleanUrls": true,
     "rewrites": [
         {
-            "source": "/maintenance",
-            "destination": "/maintenance.html"
-        },
-        {
-            "source": "/((?!maintenance).*)",
+            "source": "/(.*)",
             "destination": "/maintenance.html"
         }
     ]
