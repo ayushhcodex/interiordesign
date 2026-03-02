@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Ratnakala Interiors — We'll Be Back Soon</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --clr-bg: #0D0D0D;
+      --clr-surface: #161616;
+      --clr-border: rgba(200, 114, 72, 0.15);
+      --clr-gold: #C06132;
+      --clr-gold-light: #D67A4E;
+      --clr-gold-dark: #9E4D25;
+      --clr-text: #EFEFE9;
+      --clr-text-muted: #A3A39C;
+      --clr-text-dim: #7A7A71;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* Grain texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Ambient glow */
+    .glow {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+    }
+
+    .glow-1 {
+      top: -15%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(192, 97, 50, 0.08) 0%, transparent 70%);
+    }
+
+    .glow-2 {
+      bottom: -20%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(192, 97, 50, 0.05) 0%, transparent 70%);
+    }
+
+    /* Background word */
+    .bg-word {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading);
+      font-size: clamp(6rem, 15vw, 16rem);
+      font-weight: 700;
+      line-height: 1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(192, 97, 50, 0.05);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      max-width: 600px;
+      animation: fadeIn 1.2s ease both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Logo */
+    .logo {
+      margin-bottom: 3rem;
+    }
+
+    .logo-main {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--clr-text);
+    }
+
+    .logo-sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--clr-gold);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Decorative line */
+    .line {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--clr-gold), transparent);
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Heading */
+    h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 500;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.25rem;
+      color: var(--clr-text);
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--clr-gold-light);
+    }
+
+    p {
+      color: var(--clr-text-muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      font-weight: 300;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    /* Contact info */
+    .contact-info {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--clr-text-dim);
+      text-decoration: none;
+      transition: color 0.3s;
+      letter-spacing: 0.02em;
+    }
+
+    .contact-link:hover {
+      color: var(--clr-gold-light);
+    }
+
+    .contact-link svg {
+      width: 16px;
+      height: 16px;
+      color: var(--clr-gold);
+      flex-shrink: 0;
+    }
+
+    /* Subtle animated dots */
+    .pulse-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--clr-gold);
+      margin: 2.5rem auto 0;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.4);
+      }
+    }
+
+    /* Footer */
+    .footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 1.5rem;
+      z-index: 2;
+    }
+
+    .footer p {
+      font-size: 0.7rem;
+      color: var(--clr-text-dim);
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Ambient effects -->
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="bg-word">RATNAKALA</div>
+
+  <div class="wrapper">
+    <!-- Logo -->
+    <div class="logo">
+      <span class="logo-main">Ratnakala</span>
+      <span class="logo-sub">Interiors</span>
+    </div>
+
+    <div class="line"></div>
+
+    <h1>We'll Be Back <em>Soon</em></h1>
+
+    <p>
+      We're currently making some improvements to bring you an even better experience.
+      Our site will be back online shortly.
+    </p>
+
+    <!-- Contact while offline -->
+    <div class="contact-info">
+      <a href="tel:+919480181596" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z">
+          </path>
+        </svg>
+        +91 94801 81596
+      </a>
+      <a href="mailto:ratnakalainteriors@gmail.com" class="contact-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+        ratnakalainteriors@gmail.com
+      </a>
+    </div>
+
+    <div class="pulse-dot"></div>
+  </div>
+
+  <div class="footer">
+    <p>© 2026 Ratnakala Interiors. All rights reserved.</p>
+  </div>
+
+</body>
+
+</html>
